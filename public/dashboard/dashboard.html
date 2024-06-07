@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboards</title>
+
+
+    <link rel="stylesheet" href="./../css/dashboards.css">
+    <link rel="stylesheet" href="./../css/estilo.css" />
+    <link rel="shortcut icon" type="imagex/png" href="../Css/img/zodiaco-sem-fundo.png">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="../js/sessao.js"></script>
+    <script src="./../js/alerta.js"></script>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- scripts do Chart.js - 2022-1 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!--FONT AWESOME-->
+    <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
+</head>
+
+<!-- <body onload=" atualizarFeed()"> -->
+
+<body>
+
+    <div class="janela">
+        <div class="header-left">
+            <img src="../css/img/logo-gravity-falls-removebg-preview.png" class="logo">
+
+            <div class="hello">
+                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+            </div>
+
+            <div class="btn-nav-white">
+                <a href="./cards.html">
+                    <h3>Score</h3>
+                </a>
+            </div>
+
+            <div class="btn-nav">
+
+                <h3>Gráficos</h3>
+
+            </div>
+
+            <!-- <div class="btn-nav-white">
+                <a href="./mural.html">
+                    <h3>Mural de Avisos</h3>
+                </a>
+            </div> -->
+
+            <div class="btn-logout">
+                <a href="../personagens.html">
+                    <h3>Sair</h3>
+                </a>
+            </div>
+
+        </div>
+
+        <div class="dash">
+            <div id="alerta">
+            </div>
+            
+            <div class="area-parametros-alerta">
+                <p class="titulo-legenda">
+                    Top 5 Personagens mais curtidos
+                </p>
+                <div class="parametros-alerta">
+                    <div class="item primeirolugar">
+                        <p>1°</p>
+                        <p> Bill Cipher</p>
+                    </div>
+                    <div class="item segundolugar">
+                        <p>2°</p>
+                        <p> Stan Pines</p>
+                    </div>
+                    <div class="item terceirolugar">
+                        <p>3°</p>
+                        <p> Wendy Corduroy</p>
+                    </div>
+                    <div class="item quartolugar">
+                        <p>4°</p>
+                        <p> Stanley Pines</p>
+                    </div>
+                    <div class="item quintolugar">
+                        <p>5°</p>
+                        <p> Dipper Pines</p>
+                    </div>
+                </div>
+            </div>
+            <div class="cards-grafico">
+                <canvas id="bar-chart"></canvas>
+            </div>
+
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+
+<script>
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO
+
+    const barChart = document.getElementById('bar-chart');
+    let curtidasstan = 0;
+    let curtidasbill = 0;
+    let curtidasmabel = 0;
+    let curtidasstanley = 0;
+    let curtidaspacifica = 0;
+    let curtidasdipper = 0;
+    let curtidasminotauro = 0;
+    let curtidasrobbie = 0;
+    let curtidasgnomo = 0;
+    let curtidasunicornio = 0;
+    let curtidassoos = 0;
+    let curtidaswendy = 0;
+    let curtidasgideon = 0;
+
+    fetch("/aquarios/mostrarcurtidastan", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    }).then(function (resposta) {
+        if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    
+                    curtidasstan = json.curtidas;
+                });
+
+            }
+    })
+
+    fetch("/aquarios/mostrarcurtidabill", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    }).then(function (resposta) {
+        if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    
+                    curtidasbill = json.curtidas;
+                });
+
+            }
+    })
+
+    fetch("/aquarios/mostrarcurtidamabel", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    }).then(function (resposta) {
+        if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    
+                    curtidasmabel = json.curtidas;
+                });
+
+            }
+    })
+
+    fetch("/aquarios/mostrarcurtidastanley", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    }).then(function (resposta) {
+        if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    
+                    curtidasstanley = json.curtidas;
+                });
+
+            }
+    })
+
+    fetch("/aquarios/mostrarcurtidapacifica", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    }).then(function (resposta) {
+        if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    
+                    curtidaspacifica = json.curtidas;
+                });
+
+            }
+    })
+
+
+
+    fetch("/aquarios/mostrarcurtidadipper", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    }).then(function (resposta) {
+        if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    
+                    curtidasdipper = json.curtidas;
+                });
+
+            }
+    })
+
+    fetch("/aquarios/mostrarcurtidaminotauro", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    }).then(function (resposta) {
+        if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    
+                    curtidasminotauro = json.curtidas;
+                });
+
+            }
+    })
+
+    fetch("/aquarios/mostrarcurtidarobbie", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    }).then(function (resposta) {
+        if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    
+                    curtidasrobbie = json.curtidas;
+                });
+
+            }
+    })
+
+    fetch("/aquarios/mostrarcurtidagnomo", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    }).then(function (resposta) {
+        if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    
+                    curtidasgnomo = json.curtidas;
+                });
+
+            }
+    })
+
+    fetch("/aquarios/mostrarcurtidaunicornio", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    }).then(function (resposta) {
+        if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    
+                    curtidasunicornio = json.curtidas;
+                });
+
+            }
+    })
+
+    fetch("/aquarios/mostrarcurtidasoos", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    }).then(function (resposta) {
+        if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    
+                    curtidassoos = json.curtidas;
+                });
+
+            }
+    })
+
+    fetch("/aquarios/mostrarcurtidawendy", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    }).then(function (resposta) {
+        if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    
+                    curtidaswendy = json.curtidas;
+                });
+
+            }
+    })
+
+    fetch("/aquarios/mostrarcurtidagideon", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    }).then(function (resposta) {
+        if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    
+                    curtidasgideon = json.curtidas;
+                });
+
+            }
+    })
+
+
+    setTimeout(() => {
+        new Chart(barChart,
+            {
+                type: 'bar',
+                data: {
+                    labels: ['Stan Pines', 'Bill Cipher', 'Mabel Pines', 'Stanley Pines', 'Pacifica Northwest', 'Dipper Pines', 'minotauro', 'Robbie valentino', 'gnomo', 'unicornio', 'soos', 'wendy', 'gideon'],
+                    datasets: [{
+                        label: 'Curtidas de cada personagem',
+                        data: [curtidasstan, curtidasbill, curtidasmabel, curtidasstanley, curtidaspacifica, curtidasdipper, curtidasminotauro, curtidasrobbie, curtidasgnomo, curtidasunicornio, curtidassoos, curtidaswendy, curtidasgideon],
+                        borderWidth: 1,
+                        borderColor: 'rgba(50, 50, 50)',
+                        backgroundColor: '#e3b062',
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+    }, 300);
+
+</script>

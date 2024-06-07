@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="imagex/png" href="../Css/img/zodiaco-sem-fundo.png">
+    <title>Score</title>
+
+
+    <link rel="stylesheet" href="./../css/dashboards.css">
+    <link rel="stylesheet" href="./../css/estilo.css" />
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/sessao.js"></script>
+    <script src="../js/alerta.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body onload="validarSessao(), exibirAquarios(),  atualizacaoPeriodica()">
+
+    <div class="janela">
+
+        <div class="header-left dash-header">
+
+           <img src="../css/img/logo-gravity-falls-removebg-preview.png" class="logo">
+
+            <div class="hello">
+                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+            </div>
+
+            <div class="btn-nav">
+                <h3>Score</h3>
+            </div>
+
+            <div class="btn-nav-white">
+                <a href="./dashboard.html">
+                    <h3>Gráficos</h3>
+                </a>
+            </div>
+
+            <!-- <div class="btn-nav-white">
+                <a href="./mural.html">
+                    <h3>Mural de Avisos</h3>
+                </a>
+            </div> -->
+
+            <div class="btn-logout">
+                <a href="../personagens.html">
+                <h3>Sair</h3>
+            </a>
+            </div>
+
+        </div>
+
+        <div class="dash">
+            <div id="alerta">
+            </div>
+            <div class="area-parametros-alerta">
+                <p class="titulo-legenda">
+                    Legenda - Parâmetros para Alertas
+                </p>
+                <div class="parametros-alerta">
+                    <div class="item-regua perigo-frio">
+                        <p>Iniciante</p>
+                        <p>&lt; 200 P</p>
+                    </div>
+                    <div class="item-regua alerta-frio">
+                        <p>Intermediario</p>
+                        <p>&lt; 400 P</p>
+                    </div>
+                    <div class="item-regua ideal">
+                        <p>Avançado</p>
+                        <p>&lt; 600 P</p>
+                    </div>
+                    <div class="item-regua alerta-quente">
+                        <p>Experiente</p>
+                        <p>&lt; 800 P</p>
+                    </div>
+                    <div class="item-regua perigo-quente">
+                        <p>Especial</p>
+                        <p>&gt; 1000 P</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cards" id="cardAquarios">
+                <canvas id="bar-chart"></canvas>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+
+<script>
+        const barChart = document.getElementById('bar-chart');
+        let cor = '#5c6bc0';
+        let Scoreatual = 0;
+
+
+        fetch("/aquarios/mostrarscoreatual", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+            body: JSON.stringify({
+
+        idUsuario: sessionStorage.ID_USUARIO
+      }),
+    }).then(function (resposta) {
+        if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    Scoreatual = json.scores;
+                });
+
+            }
+    });
+
+    setTimeout(() => {
+        
+    if(Scoreatual >= 200 && Scoreatual < 400){
+        cor = 'red'
+    }else if(Scoreatual >= 400 && Scoreatual < 600){
+        cor = 'yellow'
+    } else if(Scoreatual >= 600 && Scoreatual < 800){
+        cor = 'green'
+    } else if(Scoreatual >= 800){
+        cor = 'purple'
+    }
+        new Chart(barChart,
+            {
+                type: 'bar',
+                data: {
+                    labels: ['Score Atual'],
+                    datasets: [{
+                        label: 'Score',
+                        data: [Scoreatual],
+                        borderWidth: 1,
+                        borderColor: cor,
+                        backgroundColor: cor,
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }, 300);
+</script>
+
