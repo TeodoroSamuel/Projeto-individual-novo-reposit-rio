@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Cadastro</title>
+
+  <script src="./js/sessao.js"></script>
+
+  <link rel="stylesheet" href="./Css/Projeto-Global.css">
+  <link rel="stylesheet" href="./Css/Cadastro.css">
+  <link rel="shortcut icon" type="imagex/png" href="./Css/img/zodiaco-sem-fundo.png">
+
+</head>
+
+
+<div class="cabecalho">
+
+  <img src="./Css/img/logo-gravity-falls-removebg-preview.png">
+
+  <div class="primeira-parte-do-cabecalho">
+
+    <div class="texto-fora-de-destaque-cabecalho">
+
+      <li>
+        <a href="./index.html" class="botao-fora-de-destaque">
+
+          Home
+
+        </a>
+      </li>
+
+    </div>
+
+  </div>
+
+  <div class="segunda-parte-do-cabecalho">
+
+    <li class="texto-em-destaque-cabecalho">
+      <a href="cadastro.html" class="botao-dentro-de-destaque">
+
+        Cadastro
+
+      </a>
+    </li>
+
+  </div>
+
+
+  <div class="terceira-parte-do-cabecalho">
+
+    <div class="texto-fora-de-destaque-cabecalho">
+
+      <li>
+
+        <a href="Login.html" class="botao-fora-de-destaque">
+          Login
+        </a>
+
+      </li>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!--header fim-->
+<div class="estrutura">
+
+  <div class="alerta_erro">
+    <div class="card_erro" id="cardErro">
+      <span id="mensagem_erro"></span>
+    </div>
+  </div>
+
+    <div class="disfarce-da-estrutura">
+
+    <div class="dados-do-cadastro">
+
+      <h2>Bem-vindo!</h2>
+
+      <h4>
+        Nome:
+      </h4>
+      <input id="nome" placeholder="Insira seu nome">
+      <h4>
+        <span>E-mail:</span>
+      </h4>
+      <input id="email" placeholder="Insira Seu E-mail">
+      <h4>
+        senha:
+      </h4>
+      <input id="senha" placeholder="Insira Sua Senha" type="password">
+      <h4>
+        Conferir senha:
+      </h4>
+      <input id="conferirsenha" placeholder="Insira Novamente Sua Senha" type="password">
+
+      <button onclick="cadastrar()" class="botao-cadastrar">Cadastrar</button>
+
+    </div>
+
+  </div>
+</div>
+</div>
+</div>
+</div>
+
+<!--footer inicio-->
+<div class="borda-inferior">
+
+</div>
+
+</div>
+
+</header>
+
+<!--footer fim-->
+</body>
+
+</html>
+
+<script>
+  function cadastrar() {
+
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var nomeVar = nome.value;
+    var emailVar = email.value;
+    var senhaVar = senha.value;
+    var confirmacaoSenhaVar = conferirsenha.value;
+    var moedasVar = 0;
+    var scoreVar = 0;
+
+    if (
+      nomeVar == "" ||
+      emailVar == "" ||
+      senhaVar == "" ||
+      confirmacaoSenhaVar == ""
+    ) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        `<b>PREENCHA TODOS OS CAMPOS PARA PROSSEGUIR</b> <br> <img src="./css/img/sino.gif" class="sino">`;
+      return false;
+    } else if(emailVar.indexOf('@') == -1 || emailVar.indexOf('.') == -1){
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        `<b>FORMATO DE EMAIL INVALIDO</b> <br> <img src="./css/img/sino.gif" class="sino">`;
+        return false;
+    } else if(senhaVar != confirmacaoSenhaVar){
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        `<b>AS SENHAS NÃO COINCIDEM</b> <br> <img src="./css/img/sino.gif" class="sino">`;
+        return false;
+    } else if(senhaVar.length < 8){
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        `<b>INSIRA PELO MENOS 8 CARACTERES EM SUA SENHA</b> <br> <img src="./css/img/sino.gif" class="sino">`;
+        return false;
+    } 
+    else{
+      setInterval(sumirMensagem, 5000);
+    }
+
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: nomeVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar,
+        moedasServer: moedasVar,
+        scoreServer: scoreVar
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          cardErro.style.display = "block";
+
+          mensagem_erro.innerHTML =
+            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+          setTimeout(() => {
+            window.location = "login.html";
+          }, "2000");
+
+
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+
+    return false;
+  }
+
+  // function listar() {
+  //   fetch("/empresas/listar", {
+  //     method: "GET",
+  //   })
+  //     .then(function (resposta) {
+  //       resposta.json().then((empresas) => {
+  //         empresas.forEach((empresa) => {
+  //           listaEmpresas.innerHTML += `<option value='${empresa.id}'>${empresa.cnpj}</option>`;
+  //         });
+  //       });
+  //     })
+  //     .catch(function (resposta) {
+  //       console.log(`#ERRO: ${resposta}`);
+  //     });
+  // }
+
+  function sumirMensagem() {
+    cardErro.style.display = "none";
+  }
+</script>
