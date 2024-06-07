@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Css/css-personagens/Pacifica.css">
+    <link rel="stylesheet" href="../Css/css-personagens/area-geral-personagens.css">
+    <link rel="stylesheet" href="../Css/css-personagens/estrutura-para-personagens.css">
+    <link rel="shortcut icon" type="imagex/png" href="../Css/img/zodiaco-sem-fundo.png">
+    <title>Pacifica Northwest</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="cabecalho">
+
+            <img src="../Css/img/logo-gravity-falls-removebg-preview.png" class="logo-gravity">
+
+            <div class="primeira-parte-do-cabecalho">
+
+                <div class="texto-fora-de-destaque-cabecalho">
+
+                    <li>
+                        <a href="../personagens.html" class="botao-fora-de-destaque">
+
+                            Personagens
+
+                        </a>
+                    </li>
+
+                </div>
+
+            </div>
+
+            <div class="segunda-parte-do-cabecalho">
+
+                <li class="texto-em-destaque-cabecalho">
+                <li>
+                    <a href="../personagens.html" class="botao-dentro-de-destaque">
+
+                        Pacifica 
+
+                    </a>
+                </li>
+
+            </div>
+
+            <div class="terceira-parte-do-cabecalho">
+
+            <div class="quarta-parte-do-cabecalho">
+
+                <li>
+                    <div class="dollars-area">
+                        <img src="../Css/img/wired-lineal-290-coin.gif" class="dollars">
+
+                    </div>
+                </li>
+
+                <li>
+                    <a href=../perfil.html"  class="perfil-area">
+                        <div class="nome" id="nome">Samuel Teodoro</div> 
+                        <img src="../Css/img/perfil-foto-teste.jpg" class="perfil">
+                    </a>
+                </li>
+
+            </div>
+
+        </div>
+        </div>
+
+        </div>
+
+    </header>
+
+    <div class="area-principal">
+
+        <div class="area-texto">
+
+            <div class="area-escrita">
+                <br>
+                <div class="estilizacao-letras-titulo">
+
+                    Pacifica Northwest
+
+                </div>
+                <br>
+                <div class="estilizacao-letras-sobre-mim">
+                    
+                    Pacifica Northwest é uma personagem intrigante e complexa em Gravity Falls. Ela é introduzida como uma adolescente popular e mimada, pertencente a uma das famílias mais ricas e influentes de Gravity Falls, os Northwest. Inicialmente, Pacifica é retratada como uma típica "garota popular", arrogante e preocupada apenas com sua própria imagem e status social.
+                    <br>
+                    No entanto, ao longo da série, Pacifica passa por um notável desenvolvimento de personagem. Ela começa a questionar as expectativas impostas a ela por sua família e a reconhecer a superficialidade de suas amizades anteriores. Eventualmente, Pacifica se afasta da imagem de "garota mimada" e se torna uma pessoa mais compassiva e genuína.
+                    <br>
+                    Um ponto de virada importante na jornada de Pacifica é quando ela se torna mais próxima de Mabel Pines, eventualmente desenvolvendo uma amizade genuína com ela. Mabel ajuda Pacifica a se libertar das expectativas opressivas de sua família e a descobrir sua própria voz e identidade.
+                    <br>
+                    Além disso, Pacifica também enfrenta seu próprio conflito familiar ao perceber as injustiças cometidas pelos Northwests em relação aos moradores menos privilegiados de Gravity Falls. Ela se rebela contra as práticas corruptas de seus pais e busca fazer as pazes com aqueles que foram prejudicados por sua família.
+                    <br>
+                    No final, Pacifica emerge como uma personagem forte e independente, disposta a desafiar as normas e expectativas impostas a ela. Sua jornada é uma de autodescoberta e redenção, demonstrando que, independentemente do passado, é possível escolher um caminho de integridade e compaixão. Sua transformação inspira não apenas os habitantes de Gravity Falls, mas também os espectadores, mostrando que a verdadeira beleza reside na coragem de ser autêntico e no desejo de fazer a coisa certa.
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="area-foto">
+
+        </div>
+
+    </div>
+
+    <div class="borda-inferior">
+        <a href="../Joguinhos/Mabelcoin.html" class="iniciarjoguinho">
+            Iniciar Jogo
+        </a>
+
+        <button onclick="curtida()" class="curtida">
+        </button>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    let curtidasVar = 0;
+
+    function curtida() {
+        curtidasVar += 1;
+        if (curtidasVar <= 1) {
+
+            fetch("/usuarios/acrescentarcurtidapacifica", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    curtidasServer: curtidasVar,
+                }),
+            })
+
+            return false;
+        } 
+        if(curtidasVar > 1){
+            curtidasVar = 1
+
+            fetch("/usuarios/retirarcurtidapacifica", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    curtidasServer: curtidasVar,
+                }),
+            })
+
+            curtidasVar = 0
+            return false;  
+        }
+    }
+</script>

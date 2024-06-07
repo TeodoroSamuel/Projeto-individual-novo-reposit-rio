@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Css/css-personagens/Dipper.css">
+    <link rel="stylesheet" href="../Css/css-personagens/area-geral-personagens.css">
+    <link rel="stylesheet" href="../Css/css-personagens/estrutura-para-personagens.css">
+    <link rel="shortcut icon" type="imagex/png" href="../Css/img/zodiaco-sem-fundo.png">
+    <title>Dipper Pines</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="cabecalho">
+
+            <img src="../Css/img/logo-gravity-falls-removebg-preview.png" class="logo-gravity">
+
+            <div class="primeira-parte-do-cabecalho">
+
+                <div class="texto-fora-de-destaque-cabecalho">
+
+                    <li>
+                        <a href="../personagens.html" class="botao-fora-de-destaque">
+
+                            Personagens
+
+                        </a>
+                    </li>
+
+                </div>
+
+
+            </div>
+
+            <div class="segunda-parte-do-cabecalho">
+
+                <li class="texto-em-destaque-cabecalho">
+                <li>
+                    <a href="../personagens.html" class="botao-dentro-de-destaque">
+
+                        Dipper Pines
+
+                    </a>
+                </li>
+
+            </div>
+
+            <div class="terceira-parte-do-cabecalho">
+            
+            <div class="quarta-parte-do-cabecalho">
+
+                <li>
+                    <div class="dollars-area">
+        
+
+                    </div>
+                </li>
+
+                <li>
+                    <a href="../perfil.html"  class="perfil-area">
+                        <div class="nome" id="nome">Samuel Teodoro</div> 
+                        <img src="../Css/img/perfil-foto-teste.jpg" class="perfil">
+                    </a>
+                </li>
+
+            </div>
+
+        </div>
+        </div>
+
+        </div>
+
+    </header>
+
+    <div class="area-principal">
+
+        <div class="area-texto">
+
+            <div class="area-escrita">
+                <br>
+                <div class="estilizacao-letras-titulo">
+
+                    Dipper Pines
+
+
+                </div>
+                <br>
+                <div class="estilizacao-letras-sobre-mim">
+
+                    "Dipper Pines, um adolescente curioso e destemido, embarca em uma aventura extraordinária em Gravity Falls, uma cidade peculiar e repleta de mistérios. Junto com sua irmã gêmea, Mabel, e seu tio Stan, Dipper mergulha em um universo de criaturas estranhas, conspirações ocultas e eventos sobrenaturais.
+                    <br>
+                    Desde o momento em que chegam à cidade para passar o verão com seu tio Stan, Dipper e Mabel são imediatamente envolvidos em uma série de acontecimentos bizarros e inexplicáveis. Dipper, em particular, encontra um misterioso diário escondido na floresta, que revela segredos sombrios sobre Gravity Falls e suas estranhas ocorrências.
+                    <br>
+                    Com a ajuda do diário e de sua inteligência aguçada, Dipper se torna determinado a desvendar os mistérios de Gravity Falls. Ele enfrenta diversos desafios, desde lidar com as artimanhas do tio Stan até desvendar enigmas complexos que colocam sua coragem à prova. Ao longo de sua jornada, ele descobre aliados improváveis, como Soos, um empregado do Mistério Shack, e Wendy, uma adolescente descolada que trabalha lá.
+                    <br>
+                    No entanto, à medida que Dipper se aprofunda nos segredos de Gravity Falls, ele também descobre que há forças sinistras em jogo, incluindo a presença ameaçadora de Bill Cipher, uma entidade demoníaca que busca controlar a cidade e seus habitantes. Dipper percebe que não está apenas lidando com mistérios sobrenaturais, mas também com questões pessoais e dilemas morais que testam seus valores e sua lealdade à família e aos amigos.
+                    <br>
+                    Ao longo de suas aventuras, Dipper desenvolve habilidades de liderança e cresce como pessoa, aprendendo lições importantes sobre coragem, amizade e responsabilidade. Ele enfrenta seus medos mais profundos e se torna um herói improvável, determinado a proteger Gravity Falls e aqueles que ama a qualquer custo.
+                    <br>
+                    No final, Dipper descobre a verdadeira natureza de Gravity Falls e o papel que ele e sua família desempenham na história da cidade. Com coragem e determinação, ele enfrenta Bill Cipher em uma batalha épica que decidirá o destino de Gravity Falls e de todos os que nele habitam. E, ao final da jornada, Dipper emerge não apenas como um detetive corajoso, mas como um símbolo de esperança e resiliência para todos os que o rodeiam."
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="area-foto">
+
+        </div>
+
+    </div>
+    
+    <div class="borda-inferior">
+        <a href="../Joguinhos/Mabelcoin.html" class="iniciarjoguinho">
+            Iniciar Jogo
+        </a>
+
+        <button onclick="curtida()" class="curtida">
+        </button>
+        </div>
+
+</body>
+
+</html>
+
+<script>
+    let curtidasVar = 0;
+
+    function curtida() {
+        curtidasVar += 1;
+        if (curtidasVar <= 1) {
+
+            fetch("/usuarios/acrescentarcurtidadipper", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    curtidasServer: curtidasVar,
+                }),
+            })
+
+            return false;
+        } 
+        if(curtidasVar > 1){
+            curtidasVar = 1
+
+            fetch("/usuarios/retirarcurtidadipper", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    curtidasServer: curtidasVar,
+                }),
+            })
+
+            curtidasVar = 0
+            return false;  
+        }
+    }
+</script>

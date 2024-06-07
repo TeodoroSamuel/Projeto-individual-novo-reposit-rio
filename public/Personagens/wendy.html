@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Css/css-personagens/Wendy.css">
+    <link rel="stylesheet" href="../Css/css-personagens/area-geral-personagens.css">
+    <link rel="stylesheet" href="../Css/css-personagens/estrutura-para-personagens.css">
+    <link rel="shortcut icon" type="imagex/png" href="../Css/img/zodiaco-sem-fundo.png">
+    <title>Wendy Corduroy</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="cabecalho">
+
+            <img src="../Css/img/logo-gravity-falls-removebg-preview.png" class="logo-gravity">
+
+            <div class="primeira-parte-do-cabecalho">
+
+                <div class="texto-fora-de-destaque-cabecalho">
+
+                    <li>
+                        <a href="../personagens.html" class="botao-fora-de-destaque">
+
+                            Personagens
+
+                        </a>
+                    </li>
+
+                </div>
+
+
+            </div>
+
+            <div class="segunda-parte-do-cabecalho">
+
+                <li class="texto-em-destaque-cabecalho">
+                <li>
+                    <a href="../personagens.html" class="botao-dentro-de-destaque">
+
+                       Wendy 
+
+                    </a>
+                </li>
+
+            </div>
+
+            <div class="terceira-parte-do-cabecalho">
+
+            <div class="quarta-parte-do-cabecalho">
+
+                <li>
+                    <div class="dollars-area">
+                        <img src="../Css/img/wired-lineal-290-coin.gif" class="dollars">
+
+                    </div>
+                </li>
+
+                <li>
+                    <a href="../perfil.html"  class="perfil-area">
+                        <div class="nome" id="nome">Samuel Teodoro</div> 
+                        <img src="../Css/img/perfil-foto-teste.jpg" class="perfil">
+                    </a>
+                </li>
+
+            </div>
+
+        </div>
+        </div>
+
+        </div>
+
+    </header>
+
+    <div class="area-principal">
+
+        <div class="area-texto">
+
+            <div class="area-escrita">
+                <br>
+                <div class="estilizacao-letras-titulo">
+
+                    Wendy Corduroy
+
+
+                </div>
+                <br>
+                <div class="estilizacao-letras-sobre-mim">
+                    
+                    Wendy Corduroy é uma personagem marcante e cativante em Gravity Falls. Ela é uma adolescente descolada e independente, conhecida por seu estilo único e sua atitude descontraída.
+                    <br>
+                    Como funcionária do Mistério Shack, Wendy trabalha como operadora de telefonia e ocasionalmente ajuda em outras tarefas do estabelecimento. Sua presença no local não só adiciona um toque de frescor à equipe, mas também atrai a atenção de Dipper, que rapidamente desenvolve uma paixão adolescente por ela.
+                    <br>
+                    Wendy é muito mais do que sua aparência descontraída sugere. Ela é inteligente, corajosa e compassiva, e mostra uma profunda lealdade para com seus amigos e família. Sua habilidade de lidar com situações difíceis com calma e confiança a torna uma pessoa em quem os outros podem confiar.
+                    <br>
+                    Além de sua vida no Mistério Shack, Wendy é uma entusiasta do ar livre, passando seu tempo livre explorando as florestas e trilhas de Gravity Falls. Sua paixão pelo aventura e pela natureza a torna uma figura inspiradora para Dipper e Mabel, que frequentemente a acompanham em suas excursões.
+                    <br>
+                    Ao longo da série, Wendy enfrenta seus próprios desafios e dilemas pessoais, incluindo questões relacionadas ao trabalho, amizade e romance. Ela mostra uma notável capacidade de crescimento e maturidade, aprendendo lições valiosas sobre honestidade, autenticidade e autoconfiança ao longo do caminho.
+                    <br>
+                    A relação de Wendy com Dipper evolui ao longo da série, passando de uma simples paixão adolescente para uma amizade profunda e significativa. Embora suas diferenças possam criar tensões ocasionalmente, sua conexão é baseada em um profundo respeito e admiração mútua.
+                    
+                    No final, Wendy emerge como uma jovem forte e resiliente, cuja presença deixa uma marca duradoura em Gravity Falls e na vida daqueles que ela encontra. Sua jornada é uma de autodescoberta e crescimento, mostrando que a verdadeira beleza está na autenticidade e na coragem de ser quem você é.
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="area-foto">
+
+        </div>
+
+    </div>
+    
+     <div class="borda-inferior">
+        <a href="../Joguinhos/Mabelcoin.html" class="iniciarjoguinho">
+            Iniciar Jogo
+        </a>
+
+        <button onclick="curtida()" class="curtida">
+        </button>
+        </div>
+
+</body>
+
+</html>
+
+<script>
+    let curtidasVar = 0;
+
+    function curtida() {
+        curtidasVar += 1;
+        if (curtidasVar <= 1) {
+
+            fetch("/usuarios/acrescentarcurtidawendy", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    curtidasServer: curtidasVar,
+                }),
+            })
+
+            return false;
+        } 
+        if(curtidasVar > 1){
+            curtidasVar = 1
+
+            fetch("/usuarios/retirarcurtidawendy", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    curtidasServer: curtidasVar,
+                }),
+            })
+
+            curtidasVar = 0
+            return false;  
+        }
+    }
+</script>

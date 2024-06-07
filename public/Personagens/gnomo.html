@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Css/css-personagens/gnomo.css">
+    <link rel="stylesheet" href="../Css/css-personagens/area-geral-personagens.css">
+    <link rel="stylesheet" href="../Css/css-personagens/estrutura-para-personagens.css">
+    <link rel="shortcut icon" type="imagex/png" href="../Css/img/zodiaco-sem-fundo.png">
+    <title>Gnominhos</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="cabecalho">
+
+            <img src="../Css/img/logo-gravity-falls-removebg-preview.png" class="logo-gravity">
+
+            <div class="primeira-parte-do-cabecalho">
+
+                <div class="texto-fora-de-destaque-cabecalho">
+
+                    <li>
+                        <a href="../personagens.html" class="botao-fora-de-destaque">
+
+                            Personagens
+
+                        </a>
+                    </li>
+
+                </div>
+
+
+            </div>
+
+            <div class="segunda-parte-do-cabecalho">
+
+                <li class="texto-em-destaque-cabecalho">
+                <li>
+                    <a href="../personagens.html" class="botao-dentro-de-destaque">
+
+                       Gnomos
+
+                    </a>
+                </li>
+
+            </div>
+
+            <div class="terceira-parte-do-cabecalho">
+
+            <div class="quarta-parte-do-cabecalho">
+
+                <li>
+                    <div class="dollars-area">
+                        <img src="../Css/img/wired-lineal-290-coin.gif" class="dollars">
+
+                    </div>
+                </li>
+
+                <li>
+                    <a href="../perfil.html"  class="perfil-area">
+                        <div class="nome" id="nome">Samuel Teodoro</div> 
+                        <img src="../Css/img/perfil-foto-teste.jpg" class="perfil">
+                    </a>
+                </li>
+
+            </div>
+
+        </div>
+        </div>
+
+        </div>
+
+    </header>
+
+    <div class="area-principal">
+
+        <div class="area-texto">
+
+            <div class="area-escrita">
+                <br>
+                <div class="estilizacao-letras-titulo">
+
+                    Gnomos
+
+                </div>
+                <br>
+                <div class="estilizacao-letras-sobre-mim">
+                    
+                    Os gnomos de Gravity Falls são criaturas místicas e travessas que desempenham um papel recorrente na série. Eles são retratados como pequenos seres barbudos, vestindo roupas de jardim e com uma predileção por causar problemas e confusão na cidade.
+                    <br>
+                    Os gnomos são liderados pelo líder autoritário, mas muitas vezes incompetente, conhecido como Gideon, que anseia pelo poder e pela dominação de Gravity Falls. Eles são inicialmente introduzidos na série quando tentam transformar Mabel em sua rainha, como parte de um plano elaborado para conquistar a cidade.
+                    <br>
+                    Apesar de sua aparência fofa e engraçada, os gnomos são seres enganosos e manipuladores, muitas vezes usando truques e artimanhas para alcançar seus objetivos. Eles são conhecidos por sua habilidade de se juntar e formar uma enorme criatura monstruosa quando estão em perigo ou ameaçados.
+                    <br>
+                    No entanto, ao longo da série, os gnomos também mostram um lado mais humano, revelando suas próprias inseguranças e desejos de serem aceitos e valorizados. Eles eventualmente abandonam seus planos de dominação e aprendem a apreciar a beleza e a diversidade de Gravity Falls.
+                    <br>
+                    Os gnomos de Gravity Falls são uma parte importante do folclore da cidade, representando tanto os perigos ocultos quanto a maravilha e a magia que permeiam o mundo da série. Sua presença adiciona uma camada adicional de mistério e diversão à história, enquanto os protagonistas lutam para lidar com suas travessuras e escapar de suas artimanhas.
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="area-foto">
+
+        </div>
+
+    </div>
+    
+        <div class="borda-inferior">
+            <a href="../Joguinhos/Mabelcoin.html" class="iniciarjoguinho">
+                Iniciar Jogo
+            </a>
+    
+            <button onclick="curtida()" class="curtida">
+            </button>
+        </div>
+
+</body>
+
+</html>
+
+<script>
+    let curtidasVar = 0;
+
+    function curtida() {
+        curtidasVar += 1;
+        if (curtidasVar <= 1) {
+
+            fetch("/usuarios/acrescentarcurtidagnomo", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    curtidasServer: curtidasVar,
+                }),
+            })
+
+            return false;
+        } 
+        if(curtidasVar > 1){
+            curtidasVar = 1
+
+            fetch("/usuarios/retirarcurtidagnomo", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    curtidasServer: curtidasVar,
+                }),
+            })
+
+            curtidasVar = 0
+            return false;  
+        }
+    }
+</script>

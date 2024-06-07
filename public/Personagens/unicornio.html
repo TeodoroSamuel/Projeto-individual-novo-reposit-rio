@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Css/css-personagens/Unicornio.css">
+    <link rel="stylesheet" href="../Css/css-personagens/area-geral-personagens.css">
+    <link rel="stylesheet" href="../Css/css-personagens/estrutura-para-personagens.css">
+    <link rel="shortcut icon" type="imagex/png" href="../Css/img/zodiaco-sem-fundo.png">
+    <title>Unicornio</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="cabecalho">
+
+            <img src="../Css/img/logo-gravity-falls-removebg-preview.png" class="logo-gravity">
+
+            <div class="primeira-parte-do-cabecalho">
+
+                <div class="texto-fora-de-destaque-cabecalho">
+
+                    <li>
+                        <a href="../personagens.html" class="botao-fora-de-destaque">
+
+                            Personagens
+
+                        </a>
+                    </li>
+
+                </div>
+
+
+            </div>
+
+            <div class="segunda-parte-do-cabecalho">
+
+                <li class="texto-em-destaque-cabecalho">
+                <li>
+                    <a href="../personagens.html" class="botao-dentro-de-destaque">
+
+                       Unicornio
+
+                    </a>
+                </li>
+
+            </div>
+
+            <div class="terceira-parte-do-cabecalho">
+
+            <div class="quarta-parte-do-cabecalho">
+
+                <li>
+                    <div class="dollars-area">
+                        <img src="../Css/img/wired-lineal-290-coin.gif" class="dollars">
+
+                    </div>
+                </li>
+
+                <li>
+                    <a href="../perfil.html"  class="perfil-area">
+                        <div class="nome" id="nome">Samuel Teodoro</div> 
+                        <img src="../Css/img/perfil-foto-teste.jpg" class="perfil">
+                    </a>
+                </li>
+
+            </div>
+
+        </div>
+        </div>
+
+        </div>
+
+    </header>
+
+    <div class="area-principal">
+
+        <div class="area-texto">
+
+            <div class="area-escrita">
+                <br>
+                <div class="estilizacao-letras-titulo">
+
+                    Unicornio
+
+                </div>
+                <br>
+                <div class="estilizacao-letras-sobre-mim">
+                    
+                    Em "Gravity Falls", os unicórnios são criaturas mágicas e misteriosas que habitam a floresta ao redor da cidade. Eles são retratados como criaturas majestosas e graciosas, conhecidas por sua beleza e poderes mágicos.
+                    <br>
+                    No episódio em que os unicórnios aparecem, Dipper e Mabel os encontram enquanto exploram a floresta. Eles são imediatamente cativados pela beleza dos unicórnios, mas logo descobrem que eles são mais do que apenas animais bonitos. Os unicórnios são mostrados como seres sensíveis e esquivos, que só se aproximam daqueles que demonstram verdadeira bondade e pureza de coração.
+                    <br>
+                    No entanto, os unicórnios também são retratados como criaturas caprichosas, que podem se tornar perigosas quando provocadas ou ameaçadas. Eles são protegidos por uma série de armadilhas e truques mágicos, que os ajudam a manter sua paz e segurança na floresta.
+                    <br>
+                    Ao longo do episódio, Dipper e Mabel aprendem valiosas lições sobre respeito pela natureza e pela vida selvagem, enquanto interagem com os unicórnios. Eles percebem que os unicórnios são mais do que apenas animais bonitos - são seres mágicos que merecem ser tratados com respeito e reverência.
+                    <br>
+                    A inclusão de unicórnios em "Gravity Falls" adiciona uma camada de fantasia e magia à série, enquanto os protagonistas continuam sua jornada de descoberta e aventura na cidade e em seus arredores. Os unicórnios são mais uma peça do misterioso e maravilhoso mundo de Gravity Falls, que continua a surpreender e encantar os espectadores ao longo da série.
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="area-foto">
+
+        </div>
+
+    </div>
+
+    <div class="borda-inferior">
+        <a href="../Joguinhos/Mabelcoin.html" class="iniciarjoguinho">
+            Iniciar Jogo
+        </a>
+
+        <button onclick="curtida()" class="curtida">
+        </button>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    let curtidasVar = 0;
+
+    function curtida() {
+        curtidasVar += 1;
+        if (curtidasVar <= 1) {
+
+            fetch("/usuarios/acrescentarcurtidaunicornio", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    curtidasServer: curtidasVar,
+                }),
+            })
+
+            return false;
+        } 
+        if(curtidasVar > 1){
+            curtidasVar = 1
+
+            fetch("/usuarios/retirarcurtidaunicornio", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    curtidasServer: curtidasVar,
+                }),
+            })
+
+            curtidasVar = 0
+            return false;  
+        }
+    }
+</script>

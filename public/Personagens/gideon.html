@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Css/css-personagens/gideon.css">
+    <link rel="stylesheet" href="../Css/css-personagens/area-geral-personagens.css">
+    <link rel="stylesheet" href="../Css/css-personagens/estrutura-para-personagens.css">
+    <link rel="shortcut icon" type="imagex/png" href="../Css/img/zodiaco-sem-fundo.png">
+    <title>Gideon Gleeful</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="cabecalho">
+
+            <img src="../Css/img/logo-gravity-falls-removebg-preview.png" class="logo-gravity">
+
+            <div class="primeira-parte-do-cabecalho">
+                
+                <div class="texto-fora-de-destaque-cabecalho">
+
+                    <li>
+                        <a href="../personagens.html" class="botao-fora-de-destaque">
+
+                            Personagens
+
+                        </a>
+                    </li>
+
+                </div>
+
+
+            </div>
+
+            <div class="segunda-parte-do-cabecalho">
+
+                <li class="texto-em-destaque-cabecalho">
+                <li>
+                    <a href="../personagens.html" class="botao-dentro-de-destaque">
+
+                        Gideon 
+
+                    </a>
+                </li>
+
+            </div>
+
+            <div class="terceira-parte-do-cabecalho">
+
+
+            <div class="quarta-parte-do-cabecalho">
+
+                <li>
+                    <div class="dollars-area">
+                        <img src="../Css/img/wired-lineal-290-coin.gif" class="dollars">
+
+                    </div>
+                </li>
+
+                <li>
+                    <a href="../perfil.html"  class="perfil-area">
+                        <div class="nome" id="nome">Samuel Teodoro</div> 
+                        <img src="../Css/img/perfil-foto-teste.jpg" class="perfil">
+                    </a>
+                </li>
+
+            </div>
+
+        </div>
+        </div>
+
+        </div>
+
+    </header>
+
+    <div class="area-principal">
+
+        <div class="area-texto">
+
+            <div class="area-escrita">
+                <br>
+                <div class="estilizacao-letras-titulo">
+
+                    Gideon Gleeful
+
+                </div>
+                <br>
+                <div class="estilizacao-letras-sobre-mim">
+
+                    Gideon Gleeful é um personagem complexo e intrigante em Gravity Falls. Ele é introduzido como um jovem charmoso e carismático, proprietário do Gideonland, um parque de diversões local. No entanto, por trás de sua fachada encantadora, Gideon esconde um lado sombrio e manipulador.
+                    <br>
+                    Desde o momento em que ele entra em cena, fica claro que Gideon está determinado a conquistar Gravity Falls e a família Pines, especialmente o Mistério Shack de Tio Stan. Ele utiliza suas habilidades de manipulação e engano para tentar obter o controle sobre a cidade e seus habitantes, muitas vezes recorrendo a métodos questionáveis para alcançar seus objetivos.
+                    <br>
+                    Gideon é um antagonista formidável para Dipper, Mabel e seus amigos, frequentemente colocando-os em situações perigosas e conspirando para derrotá-los. Sua obsessão em dominar Gravity Falls o leva a fazer pactos com forças sobrenaturais, como Bill Cipher, e a usar magia negra para alcançar seus objetivos.
+                    <br>
+                    No entanto, por trás de sua ambição desenfreada, Gideon também é revelado como alguém profundamente inseguro e carente de amor e aceitação. Sua relação com seus pais, particularmente com seu pai manipulador Bud Gleeful, desempenha um papel importante em sua personalidade e em suas motivações.
+                    <br>
+                    Ao longo da série, Gideon enfrenta uma série de derrotas e contratempos, o que o leva a questionar suas próprias escolhas e ambições. Ele é forçado a confrontar suas próprias falhas e a reconhecer o verdadeiro significado do poder e da ambição desenfreada.
+                    <br>
+                    No final, Gideon passa por um processo de redenção e transformação, buscando se redimir por seus erros e encontrar um caminho para a verdadeira felicidade e realização. Sua jornada é uma mistura de arrependimento, autoaceitação e perdão, demonstrando que, mesmo os mais vilões, têm a capacidade de mudar e se tornar melhores versões de si mesmos.
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="area-foto">
+
+        </div>
+
+    </div>
+
+    <div class="borda-inferior">
+        <a href="../Joguinhos/Mabelcoin.html" class="iniciarjoguinho">
+            Iniciar Jogo
+        </a>
+
+        <button onclick="curtida()" class="curtida">
+        </button>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    let curtidasVar = 0;
+
+    function curtida() {
+        curtidasVar += 1;
+        if (curtidasVar <= 1) {
+
+            fetch("/usuarios/acrescentarcurtidagideon", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    curtidasServer: curtidasVar,
+                }),
+            })
+
+            return false;
+        } 
+        if(curtidasVar > 1){
+            curtidasVar = 1
+
+            fetch("/usuarios/retirarcurtidagideon", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    curtidasServer: curtidasVar,
+                }),
+            })
+
+            curtidasVar = 0
+            return false;  
+        }
+    }
+</script>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Css/css-personagens/BillCipher.css">
+    <link rel="stylesheet" href="../Css/css-personagens/area-geral-personagens.css">
+    <link rel="stylesheet" href="../Css/css-personagens/estrutura-para-personagens.css">
+    <link rel="shortcut icon" type="imagex/png" href="../Css/img/zodiaco-sem-fundo.png">    
+    <title>Bill Cipher</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="cabecalho">
+
+            <img src="../Css/img/logo-gravity-falls-removebg-preview.png" class="logo-gravity">
+
+            <div class="primeira-parte-do-cabecalho">
+
+                <div class="texto-fora-de-destaque-cabecalho">
+
+                    <li>
+                        <a href="../personagens.html" class="botao-fora-de-destaque">
+
+                            Personagens
+
+                        </a>
+                    </li>
+
+                </div>
+
+
+            </div>
+
+            <div class="segunda-parte-do-cabecalho">
+
+                <li class="texto-em-destaque-cabecalho">
+                <li>
+                    <a href="../personagens.html" class="botao-dentro-de-destaque">
+
+                       Bill Cipher
+
+                    </a>
+                </li>
+
+            </div>
+
+            <div class="terceira-parte-do-cabecalho">
+            
+            <div class="quarta-parte-do-cabecalho">
+
+                <li>
+                    <div class="dollars-area">
+
+                    </div>
+                </li>
+
+                <li>
+                    <a href="../perfil.html"  class="perfil-area">
+                        <div class="nome" id="nome">Samuel Teodoro</div> 
+                        <img src="../Css/img/perfil-foto-teste.jpg" class="perfil">
+                    </a>
+                </li>
+
+            </div>
+
+        </div>
+        </div>
+
+        </div>
+
+    </header>
+
+    <div class="area-principal">
+
+        <div class="area-texto">
+
+            <div class="area-escrita">
+                <br>
+                <div class="estilizacao-letras-titulo">
+
+                    Bill Cipher
+
+                </div>
+                <br>
+                <div class="estilizacao-letras-sobre-mim">
+                    
+                    Bill Cipher é um dos personagens mais icônicos e intrigantes de "Gravity Falls". Ele é uma entidade misteriosa e poderosa, que é introduzida como o principal antagonista da série. Bill é retratado como um ser demoníaco, com uma aparência triangular distintiva e um sorriso sinistro.
+                    <br>
+                    Desde sua primeira aparição, Bill é estabelecido como uma força do caos e do mal, que busca causar destruição e manipular os habitantes de Gravity Falls para seus próprios fins. Ele é conhecido por sua natureza manipuladora e enganosa, frequentemente fazendo acordos com personagens da série em troca de favores ou informações.
+                    <br>
+                    Bill Cipher possui habilidades sobrenaturais incríveis, incluindo a capacidade de entrar na mente das pessoas, distorcer a realidade e controlar o tempo e o espaço. Ele é mostrado como um ser extremamente inteligente e astuto, capaz de planejar e executar elaborados esquemas para alcançar seus objetivos.
+                    <br>
+                    Ao longo da série, Bill Cipher serve como o principal antagonista, representando uma ameaça constante para os protagonistas, Dipper e Mabel, e para os habitantes de Gravity Falls.
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="area-foto">
+
+        </div>
+
+        <div class="area-texto">
+
+            <div class="area-escrita">
+                <br>
+                <div class="estilizacao-letras-titulo">
+
+                    Bill Cipher
+
+                </div>
+                <br>
+                <div class="estilizacao-letras-sobre-mim">
+                    
+                    Suas ações levam a uma série de eventos perigosos e sobrenaturais, culminando em uma batalha épica entre ele e os personagens principais.
+                    <br>
+                    No final da série, Bill Cipher é derrotado pelos esforços combinados de Dipper, Mabel e seus amigos, resultando em sua destruição temporária. No entanto, sua presença deixou uma marca duradoura na cidade e nos personagens, mostrando que mesmo as forças do mal mais poderosas podem ser derrotadas com coragem, determinação e união.
+                    <br>
+                    Em resumo, Bill Cipher é um personagem fascinante e assustador, cuja presença sinistra e habilidades sobrenaturais adicionam uma camada de tensão e mistério à série "Gravity Falls". Ele é uma força formidável a ser enfrentada, representando o lado sombrio e desconhecido do universo da série.
+                    
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <div class="borda-inferior">
+        <a href="../Joguinhos/Mabelcoin.html" class="iniciarjoguinho">
+            Iniciar Jogo
+        </a>
+
+        <button onclick="curtida()" class="curtida">
+        </button> 
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    let curtidasVar = 0;
+
+    function curtida() {
+        curtidasVar += 1;
+        if (curtidasVar <= 1) {
+
+            fetch("/usuarios/acrescentarcurtidabill", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    curtidasServer: curtidasVar,
+                }),
+            })
+
+            return false;
+        } 
+        if(curtidasVar > 1){
+            curtidasVar = 1
+
+            fetch("/usuarios/retirarcurtidabill", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    curtidasServer: curtidasVar,
+                }),
+            })
+
+            curtidasVar = 0
+            return false;  
+        }
+    }
+</script>

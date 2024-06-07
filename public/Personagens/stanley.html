@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Css/css-personagens/StanleyPines.css">
+    <link rel="stylesheet" href="../Css/css-personagens/area-geral-personagens.css">
+    <link rel="stylesheet" href="../Css/css-personagens/estrutura-para-personagens.css">
+    <link rel="shortcut icon" type="imagex/png" href="../Css/img/zodiaco-sem-fundo.png">
+    <title>Stanley Pines</title>
+</head>
+
+<body>
+
+    <header>
+        <div class="cabecalho">
+
+            <img src="../Css/img/logo-gravity-falls-removebg-preview.png" class="logo-gravity">
+
+            <div class="primeira-parte-do-cabecalho">
+
+                <div class="texto-fora-de-destaque-cabecalho">
+
+                    <li>
+                        <a href="../personagens.html" class="botao-fora-de-destaque">
+
+                            Personagens
+
+                        </a>
+                    </li>
+
+                </div>
+
+
+            </div>
+
+            <div class="segunda-parte-do-cabecalho">
+
+                <li class="texto-em-destaque-cabecalho">
+                <li>
+                    <a href="../personagens.html" class="botao-dentro-de-destaque">
+
+                       Stanley 
+
+                    </a>
+                </li>
+
+            </div>
+
+            <div class="terceira-parte-do-cabecalho">
+
+            <div class="quarta-parte-do-cabecalho">
+
+                <li>
+                    <div class="dollars-area">
+                        <img src="../Css/img/wired-lineal-290-coin.gif" class="dollars">
+
+                    </div>
+                </li>
+
+                <li>
+                    <a href="../perfil.html"  class="perfil-area">
+                        <div class="nome" id="nome">Samuel Teodoro</div> 
+                        <img src="../Css/img/perfil-foto-teste.jpg" class="perfil">
+                    </a>
+                </li>
+
+            </div>
+
+        </div>
+        </div>
+
+        </div>
+
+    </header>
+
+    <div class="area-principal">
+
+        <div class="area-texto">
+
+            <div class="area-escrita">
+                <br>
+                <div class="estilizacao-letras-titulo">
+
+                    Stanley Pines
+
+                </div>
+                <br>
+                <div class="estilizacao-letras-sobre-mim">
+                    
+                    "Stanley Pines, mais conhecido como Tio Stan, é uma figura enigmática e carismática em Gravity Falls. Proprietário do Mistério Shack, uma atração turística que oferece souvenires bizarros e experiências estranhas aos visitantes, Stan é um homem de negócios astuto e muitas vezes misterioso.
+                    <br>
+                    Desde o momento em que Dipper e Mabel chegam para passar o verão com ele, Stan se revela como uma figura complexa, com uma mistura única de humor sarcástico, determinação obstinada e um coração escondido sob uma casca dura. Ele é conhecido por suas tentativas de ganhar dinheiro rápido e por seus esquemas duvidosos, mas também demonstra um amor profundo por sua família e uma devoção inabalável à cidade de Gravity Falls.
+                    <br>
+                    Apesar de sua natureza áspera, Stan se torna uma figura paterna para Dipper e Mabel, oferecendo conselhos práticos e orientação, mesmo que de maneiras não convencionais. Sua relação com os sobrinhos é uma mistura de desafios e momentos de ternura, refletindo sua própria jornada pessoal para encontrar o equilíbrio entre sua vida como empresário e suas responsabilidades familiares.
+                    <br>
+                    Stan também guarda seus próprios segredos, incluindo sua conexão com os mistérios de Gravity Falls e seu passado misterioso. À medida que a série avança, sua história é gradualmente revelada, revelando detalhes de suas motivações, arrependimentos e sacrifícios.
+                    <br>
+                    Apesar de seus defeitos, Stan demonstra uma coragem inabalável quando se trata de proteger sua família e sua cidade. Ele enfrenta ameaças sobrenaturais, como Bill Cipher, com uma determinação feroz, mostrando que, sob sua fachada cínica, há um herói disposto a lutar pelo que é certo.
+                    <br>
+                    No final, Stan se destaca como uma figura complexa e multifacetada, cujas escolhas moldaram não apenas sua própria vida, mas também o destino de Gravity Falls. Sua jornada é uma mistura de redenção, sacrifício e amor familiar, demonstrando que, mesmo nos lugares mais estranhos, o verdadeiro heroísmo pode ser encontrado nos corações daqueles dispostos a lutar pela justiça e pelo amor."
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="area-foto">
+
+        </div>
+
+    </div>
+
+    <div class="borda-inferior">
+        <a href="../Joguinhos/Mabelcoin.html" class="iniciarjoguinho">
+            Iniciar Jogo
+        </a>
+
+        <button onclick="curtida()" class="curtida">
+        </button>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    let curtidasVar = 0;
+
+    function curtida() {
+        curtidasVar += 1;
+        if (curtidasVar <= 1) {
+
+            fetch("/usuarios/acrescentarcurtidastanley", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    curtidasServer: curtidasVar,
+                }),
+            })
+
+            return false;
+        } 
+        if(curtidasVar > 1){
+            curtidasVar = 1
+
+            fetch("/usuarios/retirarcurtidastanley", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    curtidasServer: curtidasVar,
+                }),
+            })
+
+            curtidasVar = 0
+            return false;  
+        }
+    }
+</script>
