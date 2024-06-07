@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mabel Coin</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../css/css-personagens/estrutura-para-personagens.css">
+    <link rel="stylesheet" href="../css/css-personagens/area-geral-personagens.css">
+    <link rel="shortcut icon" type="imagex/png" href="../Css/img/zodiaco-sem-fundo.png">
+</head>
+
+<body>
+    <header>
+        <div class="cabecalho">
+
+            <img src="../Css/img/logo-gravity-falls-removebg-preview.png" class="logo-gravity">
+
+            <div class="primeira-parte-do-cabecalho">
+
+                <div class="texto-fora-de-destaque-cabecalho">
+
+                    <li>
+                        <a href="../personagens.html" class="botao-fora-de-destaque">
+
+                            Personagens
+
+                        </a>
+                    </li>
+
+                </div>
+
+
+            </div>
+
+            <div class="segunda-parte-do-cabecalho">
+
+                <li class="texto-em-destaque-cabecalho">
+                <li>
+                    <a href="../Personagens/Mabel.html" class="botao-dentro-de-destaque">
+
+                        Voltar
+
+                    </a>
+                </li>
+
+            </div>
+
+            <div class="terceira-parte-do-cabecalho">
+
+                <div class="quarta-parte-do-cabecalho">
+
+                    <li>
+                        <div class="dollars-area">
+
+
+                        </div>
+                    </li>
+
+                    <li>
+                        <a href="../perfil.html" class="perfil-area">
+                            <div class="nome" id="nome">Samuel Teodoro</div>
+                            <img src="../Css/img/perfil-foto-teste.jpg" class="perfil">
+                        </a>
+                    </li>
+
+                </div>
+
+            </div>
+        </div>
+
+        </div>
+
+    </header>
+
+    <div class="area-principal">
+        <div id="game-area">
+            <div id="snake"></div>
+            <div id="Coin"></div>
+        </div>
+    </div>
+
+    <div class="borda-inferior">
+
+        <a href="../Joguinhos/Mabelcoin.html" class="iniciarjoguinho">
+            Reinciar
+        </a>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
+<script>
+    const gameArea = document.getElementById("game-area");
+    const snake = document.getElementById("snake");
+    const Coin = document.getElementById("Coin");
+
+    let score = 0;
+    let coinscoletados = 0;
+    let snakeX = 0;
+    let snakeY = 0;
+    let CoinX = 0;
+    let CoinY = 0;
+    let dx = 0;
+    let dy = 0;
+    let interval;
+    const gridSize = 40;
+    const areaSize = 600;
+
+    function startGame() {
+        snakeX = 0;
+        snakeY = 0;
+        dx = gridSize;
+        dy = 0;
+        moveCoin();
+        interval = setInterval(updateGameArea, 150);
+    }
+
+    function moveCoin() {
+        CoinX = Math.floor(Math.random() * (areaSize / gridSize)) * gridSize;
+        CoinY = Math.floor(Math.random() * (areaSize / gridSize)) * gridSize;
+        Coin.style.left = CoinX + "px";
+        Coin.style.top = CoinY + "px";
+    }
+
+    function updateGameArea() {
+        snakeX += dx;
+        snakeY += dy;
+        if (snakeX >= areaSize || snakeX < 0 || snakeY >= areaSize || snakeY < 0) {
+            clearInterval(interval);
+            alert("Game Over!");
+            acrescentarmoedasescore();
+            acrescentartentativamabelcoin();
+            return;
+        }
+        
+        if (coinscoletados == 10) {
+                clearInterval(interval);
+                alert("Jogo finalizado");
+                acrescentarmoedasescore();
+                acrescentartentativamabelcoin();
+                return;
+            }
+            
+        snake.style.left = snakeX + "px";
+        snake.style.top = snakeY + "px";
+
+        if (snakeX === CoinX && snakeY === CoinY) {
+            coinscoletados += 1;
+            score += 5;
+            moveCoin();
+        }
+    }
+
+    document.addEventListener("keydown", (e) => {
+        switch (e.key) {
+            case "ArrowLeft":
+                if (dx !== gridSize) {
+                    dx = -gridSize;
+                    dy = 0;
+                }
+                break;
+            case "ArrowRight":
+                if (dx !== -gridSize) {
+                    dx = gridSize;
+                    dy = 0;
+                }
+                break;
+            case "ArrowUp":
+                if (dy !== gridSize) {
+                    dx = 0;
+                    dy = -gridSize;
+                }
+                break;
+            case "ArrowDown":
+                if (dy !== -gridSize) {
+                    dx = 0;
+                    dy = gridSize;
+                }
+                break;
+        }
+    });
+
+    startGame();
+
+    function acrescentarmoedasescore() {
+
+        fetch("/usuarios/acrescentarmoedasescore", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                moedascoletadasServer: coinscoletados,
+                scoreServer: score,
+                idUsuario: sessionStorage.ID_USUARIO
+            }),
+        })
+
+        return false;
+    }
+
+
+    function acrescentartentativamabelcoin() {
+
+        fetch("/usuarios/acrescentartentativamabelcoin", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                moedascoletadasServer: coinscoletados,
+                scoreServer: score,
+                idUsuario: sessionStorage.ID_USUARIO
+            }),
+        })
+
+        return false;
+    }
+
+
+
+</script>
