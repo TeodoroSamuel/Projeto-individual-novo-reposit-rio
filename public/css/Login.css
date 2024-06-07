@@ -1,0 +1,115 @@
+body {
+    background-image: url('./img/mystery-shack-sunny-forest-gravity-falls-moewalls-com.gif');
+}
+
+.dados-do-login {
+    width: 400px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    border: 1px solid rgba(86, 86, 86, 0.6);
+    backdrop-filter: blur(8px);
+    background-color: rgba(194, 156, 84, 0.285);
+    transition: 0.4s;
+    font-size: 15px;
+    color: black;
+}
+
+.gif-cadastro {
+    height: 180px;
+    width: 180px;
+    margin: 20px;
+    border-radius: 50%;
+    border: 1px solid rgb(194, 156, 84);
+    transition: 0.3s;
+}
+
+.gif-cadastro:hover {
+    transition: 0.3s;
+    transform: translate(0%, -10%);
+}
+
+#email {
+    width: 90%;
+    height: 30px;
+    display: flex;
+    border: none;
+    background-color: black;
+    color: rgb(194, 156, 84);
+    transition: 0.8s;
+    border-radius: 15px;
+    font-weight: bold;
+}
+
+#email:hover {
+    background-color: rgb(194, 156, 84);
+    color: black;
+    transition: 0.8s;
+}
+
+#senha {
+    width: 90%;
+    height: 30px;
+    display: flex;
+    border: none;
+    background-color: black;
+    color: rgb(194, 156, 84);
+    transition: 0.8s;
+    border-radius: 15px;
+    font-weight: bold;
+
+}
+
+#senha:hover {
+    background-color: rgb(194, 156, 84);
+    color: black;
+    transition: 0.8s;
+}
+
+.botao-login {
+    width: 25%;
+    height: 30px;
+    margin: 15px;
+    display: flex;
+    border: none;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    color: rgb(194, 156, 84);
+    transition: 0.8s;
+    border-radius: 10px;
+}
+
+.botao-login:hover {
+    background-color: rgb(194, 156, 84);
+    color: black;
+    transition: 0.8s;
+    border: 1px solid rgb(194, 156, 84);
+}
+
+.dados-do-login:hover {
+    background-color: rgba(0, 0, 0, 0.307);
+    color: rgb(194, 156, 84);
+    transition: 0.8s;
+    border: 1px solid rgb(194, 156, 84);
+    transform: scale(1.1);
+}
+
+.welcome {
+    font-size: 20px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.disfarce-da-estrutura {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.352);
+}

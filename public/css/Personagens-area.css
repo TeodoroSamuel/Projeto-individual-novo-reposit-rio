@@ -1,0 +1,36 @@
+body {
+    background-image: url('./img/mystery-shack-sunny-forest-gravity-falls-moewalls-com.gif');
+}
+
+.imagens-dos-personas{
+    width: 100%;
+    height: 100%;
+}
+
+.disfarce-da-estrutura {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    /* flex-wrap: wrap; */
+    background-color: rgba(0, 0, 0, 0.352);
+}
+
+.area-dos-personagens{
+    width: 55%;
+}
+
+.area-dos-personagens img{
+    height: 150px;
+    width: 150px;
+    margin: 5px;
+    border-radius: 15px;
+    transition: 0.8s;
+    filter: grayscale(1)
+}
+
+.area-dos-personagens img:hover{
+    transition: 0.8s;
+    transform: scale(1.1);
+    filter: grayscale(0)
+}

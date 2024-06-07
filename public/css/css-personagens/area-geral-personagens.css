@@ -1,0 +1,68 @@
+body {
+    margin: 0px;
+    background-color: black
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+}
+
+.area-principal {
+    height: 673px;
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.352);
+}
+
+.area-foto {
+    height: 350px;
+    width: 350px;
+    border-radius: 20px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-right: 20px;
+    transition: 0.5s;
+}
+
+.area-foto:hover{
+    height: 400px;
+    width: 400px;
+    transition: 0.5s;
+}
+
+.area-escrita{
+    height: 80px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.63);
+    overflow: hidden;
+    transition: 0.5s;
+}
+
+.area-escrita:hover{
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.63);
+    transition: 0.6s;
+}
+
+.estilizacao-letras-titulo {
+    height: 60px;
+    width: 100%;
+    color: rgb(194, 156, 84);
+    font-size: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Chalkduster, fantasy;
+}
+
+.estilizacao-letras-sobre-mim {
+    font-size: 18px;
+    justify-content: center;
+    align-items: center;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+

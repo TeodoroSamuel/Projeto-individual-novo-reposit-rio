@@ -1,0 +1,224 @@
+body {
+    padding: 0px;
+    margin: 0px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+}
+
+.cabecalho {
+    height: 60px;
+    width: 100%;
+    list-style: none;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.745);
+}
+
+
+.primeira-parte-do-cabecalho {
+    height: 100%;
+    width: 33%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.botao-fora-de-destaque {
+    height: 20px;
+    width: 100px;
+    justify-content: center;
+    display: flex;
+    font-size: 20px;
+    color: #cee793;
+    text-shadow: -0.05em 0.05em #d87b10;
+    text-decoration: none;
+    transition: .35s;
+    font-family: Chalkduster, fantasy;
+}
+
+.botao-fora-de-destaque:hover {
+    border-radius: 10px;
+    transform: scale(1.3);
+}
+
+.segunda-parte-do-cabecalho {
+    width: 230px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.texto-fora-de-destaque-cabecalho {
+    display: flex;
+}
+
+.botao-dentro-de-destaque {
+    font-size: 40px;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #cee793;
+    text-decoration: none;
+    border: none;
+    font-family: Chalkduster, fantasy;
+    background-color: rgba(240, 248, 255, 0);
+    transition: .35s;
+    text-shadow: -0.05em 0.05em #d87b10
+}
+
+.botao-dentro-de-destaque:hover {
+    transform: scale(1.2);
+}
+
+.terceira-parte-do-cabecalho {
+    height: 100%;
+    width: 33%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quarta-parte-do-cabecalho {
+    height: auto;
+    width: 18%;
+    display: flex;
+    align-items: center;
+}
+
+.dollars-area {
+    height: 80%;
+    width: 100px;
+    border-radius: 10px;
+    border: 1px solid rgba(194, 156, 84, 0.422);
+    backdrop-filter: blur(8px);
+    display: flex;
+    transition: 0.3s;
+}
+
+.dollars-area:hover {
+    transition: 0.3s;
+    transform: scale(1.1);
+}
+
+.dollars {
+    height: 30px;
+    width: 30px;
+    margin-left: 5px;
+}
+
+.perfil-area {
+    width: 35px;
+    height: 35px;
+    text-decoration: none;
+    text-align: center;
+    overflow: hidden;
+    color: #cee793;
+    font-family: Chalkduster, fantasy;
+    font-size: 13px;
+    display: flex;
+    align-self: center;
+    justify-content: end;
+    border-radius: 10px;
+    margin-left: 10px;
+    border: 1px solid rgba(194, 156, 84, 0.422);
+    backdrop-filter: blur(8px);
+    transition: 0.3s;
+}
+
+.perfil-area>#nome {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.perfil-area:hover {
+    transition: 0.3s;
+    width: 90px;
+}
+
+.perfil {
+    height: 35px;
+    width: 35px;
+    border-radius: 50px;
+}
+
+
+.estrutura {
+    width: 100%;
+    height: 673px;
+}
+
+.disfarce-da-estrutura {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.352);
+}
+
+.dados-do-login {
+    width: 540px;
+    height: 540px;
+    border-radius: 30px;
+    background-color: rgba(255, 255, 255, 0.132);
+}
+
+.borda-inferior {
+    width: 100%;
+    height: 60px;
+    background-color: rgba(0, 0, 0, 0.745);
+    display: flex;
+
+    align-items: center;
+}
+
+.curtida {
+    border: none;
+    background-color: #e3b062;
+    background-image: url('../img/icons8-heart-50-removebg-preview.png');
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    transition: 0.4s;
+    border-radius: 10px;
+    margin-left: 630px;
+}
+
+.curtida:hover{
+    background-image: url('../img/icons8-heart.gif');
+    transform: scale(1.1);
+    transition: 0.4s;
+}
+
+.iniciarjoguinho {
+    height: 30px;
+    width: 100px;
+    border-radius: 40px;
+    margin-left: 670px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.411);
+    border: 1px solid rgb(194, 156, 84);
+    text-decoration: none;
+    color: rgb(194, 156, 84);
+    transition: 0.5s;
+    font-family: Chalkduster, fantasy;
+}
+
+.iniciarjoguinho:hover {
+    transform: scale(1.2);
+    transition: 0.4s;
+    border: 1px solid rgba(194, 156, 84, 0);
+    background-color: rgb(194, 156, 84);
+    color: rgb(0, 0, 0);
+    font-family: Chalkduster, fantasy;
+}

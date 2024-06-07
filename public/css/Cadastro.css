@@ -1,0 +1,154 @@
+body {
+    background-image: url('./img/mystery-shack-gravity-falls-moewalls-com\ \(1\).gif');
+}
+
+.dados-do-cadastro {
+    width: 500px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 30px;
+    border: 1px solid rgba(86, 86, 86, 0.6);
+    backdrop-filter: blur(8px);
+    background-color: rgba(110, 110, 110, 0.285);
+    transition: 0.4s;
+    font-size: 15px;
+    position: absolute;
+    color: black;
+}
+
+.dados-do-cadastro>h4 {
+    font-family: Verdana, sans-serif;
+}
+
+.dados-do-cadastro:hover {
+    background-color: rgba(0, 0, 0, 0.307);
+    color: rgb(194, 156, 84);
+    transform: scale(1.1);
+    transition: 0.8s;
+    border: 1px solid rgb(194, 156, 84);
+}
+
+#nome {
+    width: 90%;
+    height: 100px;
+    display: flex;
+    border: none;
+    background-color: black;
+    color: rgb(194, 156, 84);
+    transition: 0.8s;
+    border-radius: 110px;
+    font-family: Chalkduster, fantasy;
+}
+
+#nome:hover {
+    background-color: rgb(194, 156, 84);
+    color: black;
+    transition: 0.8s;
+}
+
+
+#aniversario {
+    width: 90%;
+    height: 100px;
+    display: flex;
+    border: none;
+    background-color: black;
+    color: rgb(194, 156, 84);
+    transition: 0.8s;
+    border-radius: 110px;
+    font-family: Chalkduster, fantasy;
+}
+
+#aniversario:hover {
+    background-color: rgb(194, 156, 84);
+    color: black;
+    transition: 0.8s;
+}
+
+#email {
+    width: 90%;
+    height: 100px; ;
+    display: flex;
+    border: none;
+    background-color: black;
+    color: rgb(194, 156, 84);
+    transition: 0.8s;
+    border-radius: 110px;
+    font-family: Chalkduster, fantasy;
+}
+
+#email:hover {
+    background-color: rgb(194, 156, 84);
+    color: black;
+    transition: 0.8s;
+}
+
+#senha {
+    width: 90%;
+    height: 100px; 
+    display: flex;
+    border: none;
+    background-color: black;
+    color: rgb(194, 156, 84);
+    transition: 0.8s;
+    border-radius: 110px;
+    font-family: Chalkduster, fantasy;
+}
+
+#senha:hover {
+    background-color: rgb(194, 156, 84);
+    color: black;
+    transition: 0.8s;
+    font-family: Chalkduster, fantasy;
+}
+
+#conferirsenha {
+    width: 90%;
+    height: 100px; 
+    display: flex;
+    border: none;
+    background-color: black;
+    color: rgb(194, 156, 84);
+    transition: 0.8s;
+    border-radius: 110px;
+    font-family: Chalkduster, fantasy;
+}
+
+#conferirsenha:hover {
+    background-color: rgb(194, 156, 84);
+    color: black;
+    transition: 0.8s;
+    font-family: Chalkduster, fantasy;
+}
+
+.botao-cadastrar {
+    width: 25%;
+    height: 100px; 
+    margin: 15px;
+    display: flex;
+    border: none;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    color: rgb(194, 156, 84);
+    transition: 0.8s;
+    border-radius: 110px;
+}
+
+.botao-cadastrar:hover {
+    background-color: rgb(194, 156, 84);
+    color: black;
+    transition: 0.8s;
+    border: 1px solid rgb(194, 156, 84);
+}
+
+.disfarce-da-estrutura {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.352);
+}
