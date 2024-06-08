@@ -1,0 +1,44 @@
+body{
+    background-image: url('../img/mystery-shack-sunny-forest-gravity-falls-moewalls-com.gif');
+}
+
+.area-foto{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.568);
+    backdrop-filter: blur(5px);
+    border: 2px solid #e3b062;
+    color: #e3b062;
+    font-size: 30px;
+    font-family: Chalkduster, fantasy;
+}
+
+.area-foto p{
+    position: absolute;
+}
+
+.botaodecompra{
+    width: 80px;
+    color: #e3b062;
+    background-color: rgba(0, 0, 0, 0.411);
+    border: 1px solid rgb(194, 156, 84);
+    border-radius: 40px;
+    height: 50px;
+    cursor: pointer;
+    margin-top: 200px;
+    transition: 0.4s;
+    font-family: Chalkduster, fantasy;
+}
+
+.botaodecompra:hover{
+    transform: scale(1.2);
+    transition: 0.4s;
+    border: 1px solid rgba(194, 156, 84, 0);
+    background-color: rgb(194, 156, 84);
+    color: rgb(0, 0, 0);
+    font-family: Chalkduster, fantasy;
+}
+

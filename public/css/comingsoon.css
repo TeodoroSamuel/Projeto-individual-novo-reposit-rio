@@ -1,0 +1,51 @@
+body {
+    background-image: url('./img/bill-modo-pedra.webp');
+}
+
+.Home {
+    width: 95%;
+    height: 95%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    border: 1px solid rgba(86, 86, 86, 0.6);
+    backdrop-filter: blur(8px);
+    background-color: rgba(194, 156, 84, 0.285);
+    transition: 0.4s;
+    font-size: 15px;
+    color: black;
+}
+
+
+.Home:hover {
+    background-color: rgba(0, 0, 0, 0.307);
+    color: rgb(194, 156, 84);
+    transition: 0.8s;
+    border: 1px solid rgb(194, 156, 84);
+
+}
+
+.disfarce-da-estrutura {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.595);
+}
+
+.primeirapartedocomingsoon img{
+    opacity: 0.5;
+    width: 400px;
+    height: 400px;
+    border-radius: 50px;
+    margin-left: 225px;
+    transition: 0.5s;
+}
+
+.primeirapartedocomingsoon img:hover{
+    transition: 0.5s;
+    opacity: 1;
+    transform: scale(1.2);
+}
