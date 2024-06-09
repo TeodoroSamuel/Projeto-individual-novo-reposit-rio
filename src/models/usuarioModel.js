@@ -5,6 +5,7 @@ function autenticar(email, senha) {
     var instrucaoSql = `
         SELECT idUsuario, nome, email senha FROM usuario WHERE email = '${email}' AND senha = '${senha}';
     `;
+
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
@@ -18,6 +19,7 @@ function cadastrar(nome, email, senha, moedas, score) {
     var instrucaoSql = `
         INSERT INTO usuario (nome, email, senha, moedas, score) VALUES ('${nome}', '${email}', '${senha}', ${moedas}, ${score});
     `;
+
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
@@ -53,12 +55,62 @@ function acrescentarmoedasescore(moedasacrescentadas, idUsuario, scoreacrescenta
 
 function mostrarmoedaatual(idUsuario) {
 
-    var instrucaoSql = `SELECT moedas FROM usuario WHERE idUsuario = ${idUsuario}`;
+    var instrucaoSql = `SELECT moedas FROM usuario WHERE idUsuario = ${idUsuario};`
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql)
 }
 
+// function inspecionardados(idUsuario){
+//     var instrucaoSql = `
+//     SELECT desbloqueado FROM personagensdesbloqueados WHERE fkUsuario = ${idUsuario} AND fkpersonagem = 1;
+// `;
+//     console.log("Executando a instrução SQL: \n" + instrucaoSql);
+
+//     if(inspecao == undefined){
+//         inspecao = 0;
+//     };
+//     console.log(inspecao)
+//     var inspecao = database.executar(instrucaoSql);
+//     return inspecao;
+// }
+
+function criardados(idUsuario){
+    // inspecionardados(idUsuario).then((resposta) => {
+
+    //     if(resposta[0].desbloqueado == 1){
+    //        return console.log("Dados ja criados")
+    //     }else{
+    var instrucaoSql = `
+    INSERT INTO  personagensdesbloqueados VALUES 
+    (default, ${idUsuario}, 1, now(), 1),
+    (default, ${idUsuario}, 2, now(), 1),
+    (default, ${idUsuario}, 3, now(), 0),
+    (default, ${idUsuario}, 4, now(), 0),
+    (default, ${idUsuario}, 5, now(), 0),
+    (default, ${idUsuario}, 6, now(), 0),
+    (default, ${idUsuario}, 7, now(), 0),
+    (default, ${idUsuario}, 8, now(), 0),
+    (default, ${idUsuario}, 9, now(), 0),
+    (default, ${idUsuario}, 10, now(), 0),
+    (default, ${idUsuario}, 11, now(), 0),
+    (default, ${idUsuario}, 12, now(), 0),
+    (default, ${idUsuario}, 13, now(), 0);
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql)
+// }
+    // })
+}
+
+function verificarcompra(idusuario, idpersonagem) {
+    var instrucaoSql = `SELECT desbloqueado FROM personagensdesbloqueados 
+    WHERE fkpersonagem = ${idpersonagem} AND fkusuario = ${idusuario};
+        `
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql)
+}
 // Mabel Pines
 
 function pegarultimacurtidamabel() {
@@ -533,6 +585,9 @@ module.exports = {
     pegarultimovalor,
     pegarultimoscore,
     mostrarmoedaatual,
+    verificarcompra,
+    criardados,
+    // inspecionardados,
 
     pegarultimacurtidamabel,
     acrescentarcurtidamabel,

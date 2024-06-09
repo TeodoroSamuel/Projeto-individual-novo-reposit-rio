@@ -41,6 +41,7 @@ function cadastrar(req, res) {
     var senha = req.body.senhaServer;
     var moedas = req.body.moedasServer;
     var score = req.body.scoreServer;
+    var idUsuario = req.body.idusuarioServer;
 
     // Faça as validações dos valores
     if (nome == undefined) {
@@ -52,7 +53,7 @@ function cadastrar(req, res) {
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, senha, moedas, score)
+        usuarioModel.cadastrar(nome, email, senha, moedas, score, idUsuario)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -87,6 +88,21 @@ function mostrarmoedaatual(req, res) {
             moeda: resposta[0].moedas,
         });
     });
+}
+
+function verificarcompra(req,res){
+    var idusuario = req.body.idusuarioServer;
+    var idpersonagem = req.body.idpersonagemServer;
+    usuarioModel.verificarcompra(idusuario, idpersonagem).then((resposta) =>{
+        res.json({
+            personagemdesbloqueado: resposta[0].desbloqueado        
+        });
+    });
+}
+
+function criardados(req,res){
+    var idUsuario = req.body.idUsuario
+    usuarioModel.criardados(idUsuario)
 }
 
 // Mabel
@@ -257,6 +273,8 @@ module.exports = {
     cadastrar,
     acrescentarmoedasescore,
     mostrarmoedaatual,
+    verificarcompra,
+    criardados,
 
     acrescentarcurtidamabel,
     retirarcurtidamabel,

@@ -17,7 +17,7 @@ body {
 }
 
 .area-dos-personagens{
-    width: 55%;
+    width: 56%;
 }
 
 .area-dos-personagens img{
@@ -26,11 +26,21 @@ body {
     margin: 5px;
     border-radius: 15px;
     transition: 0.8s;
-    filter: grayscale(1)
+    filter: grayscale(1);
+
 }
 
 .area-dos-personagens img:hover{
     transition: 0.8s;
     transform: scale(1.1);
-    filter: grayscale(0)
+    filter: grayscale(0);
+}
+
+.botao{
+    width: auto;
+    height: auto;
+    background-color: rgba(240, 248, 255, 0);
+    border: none;
+    margin: -5px;
+    cursor: pointer;
 }

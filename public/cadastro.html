@@ -135,6 +135,7 @@
     var confirmacaoSenhaVar = conferirsenha.value;
     var moedasVar = 0;
     var scoreVar = 0;
+    
 
     if (
       nomeVar == "" ||
@@ -179,7 +180,8 @@
         emailServer: emailVar,
         senhaServer: senhaVar,
         moedasServer: moedasVar,
-        scoreServer: scoreVar
+        scoreServer: scoreVar,
+        idusuarioServer: sessionStorage.ID_USUARIO
       }),
     })
       .then(function (resposta) {

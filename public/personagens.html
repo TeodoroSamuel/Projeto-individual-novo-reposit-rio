@@ -51,18 +51,18 @@
 
             <div class="quarta-parte-do-cabecalho">
 
-                
+
 
                 <li>
                     <div id="dollarsarea" class="dollarsarea">
 
-                        
+
                     </div>
                 </li>
 
                 <li>
-                    <a href="perfil.html"  class="perfil-area">
-                        <div class="nome" id="nome">Samuel Teodoro</div> 
+                    <a href="perfil.html" class="perfil-area">
+                        <div class="nome" id="nome">Samuel Teodoro</div>
                         <img src="./Css/img/perfil-foto-teste.jpg" class="perfil">
                     </a>
                 </li>
@@ -76,45 +76,45 @@
             <div class="disfarce-da-estrutura">
 
                 <div class="area-dos-personagens">
-                    <a href="./Personagens/Dipper.html">
+                    <button onclick="dipper()" class="botao">
                         <img src="./Css/img/dipper-png.png" class="imagens-dos-personas">
-                    </a>
-                    <a href="./Personagens/Mabel.html">
+                    </button>
+                    <button onclick="mabel()" class="botao">
                         <img src="./Css/img/mabel-png.jpg" class="imagens-dos-personas">
-                    </a>
-                    <a href="./Personagens/stanley.html">
+                    </button>
+                    <button onclick="stanley()" class="botao">
                         <img src="./Css/img/stanley.gif" class="imagens-dos-personas">
-                    </a>
-                    <a href="./Personagens/soos.html">
+                    </button>
+                    <button onclick="soos()" class="botao">
                         <img src="./Css/img/soos.gif" class="imagens-dos-personas">
-                    </a>
-                    <a href="./Personagens/wendy.html">
+                    </button>
+                    <button onclick="wendy()" class="botao">
                         <img src="./Css/img/wendy.gif" class="imagens-dos-personas">
-                    </a>
-                    <a href="./Personagens/pacifica.html">
+                    </button>
+                    <button onclick="pacifica()" class="botao">
                         <img src="./Css/img/pacifica.gif" class="imagens-dos-personas">
-                    </a>
-                    <a href="./Personagens/gideon.html">
+                    </button>
+                    <button onclick="gideon()" class="botao">
                         <img src="./Css/img/gideon.gif" class="imagens-dos-personas">
-                    </a>
-                    <a href="./Personagens/robbievalentino.html">
+                    </button>
+                    <button onclick="robbie()" class="botao">
                         <img src="./Css/img/robbie.gif" class="imagens-dos-personas">
-                    </a>
-                    <a href="./Personagens/gnomo.html">
+                    </button>
+                    <button onclick="gnomo()" class="botao">
                         <img src="./Css/img/gnomo.gif" class="imagens-dos-personas">
-                    </a>
-                    <a href="./Personagens/minotauro.html">
+                    </button>
+                    <button onclick="minotauro()" class="botao">
                         <img src="./Css/img/minotauro.gif" class="imagens-dos-personas">
-                    </a>
-                    <a href="./Personagens/unicornio.html">
+                    </button>
+                    <button onclick="unicornio()" class="botao">
                         <img src="./Css/img/unicornio.gif" class="imagens-dos-personas">
-                    </a>
-                    <a href="./Personagens/stan.html">
+                    </button>
+                    <button onclick="stan()" class="botao">
                         <img src="./Css/img/stanpines.gif" class="imagens-dos-personas">
-                    </a>
-                    <a href="./Personagens/billcipher.html">
+                    </button>
+                    <button onclick="bill()" class="botao">
                         <img src="./Css/img/bill-cipher-demon-form.gif" class="imagens-dos-personas">
-                    </a>
+                    </button>
                     <a href="./comingsoon.html">
                         <img src="./Css/img/coming soon.jpg" class="imagens-dos-personas">
                     </a>
@@ -138,30 +138,235 @@
 
 </html>
 <script>
+
     let moeda = 0;
-    
+    let personagemdesbloqueado = "não";
+    let idpersonagem = 0;
+
     fetch("/usuarios/mostrarmoedaatual", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-            body: JSON.stringify({
+        body: JSON.stringify({
 
-        idUsuario: sessionStorage.ID_USUARIO
-      }),
+            idUsuario: sessionStorage.ID_USUARIO
+        }),
     }).then(function (resposta) {
         if (resposta.ok) {
-                console.log(resposta);
+            console.log(resposta);
 
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-                    moeda = json.moeda;
-                });
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+                moeda = json.moeda;
+            });
 
-            }
-    });setTimeout(() => {
-    dollarsarea.innerHTML = `<img src="./Css/img/wired-lineal-290-coin.gif" class="dollars">${moeda}`
-        }, 120);
+        }
+    }); setTimeout(() => {
+        dollarsarea.innerHTML = `<img src="./Css/img/wired-lineal-290-coin.gif" class="dollars">${moeda}`
+    }, 120);
+
+    
+    fetch("/usuarios/criardados", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            idUsuario: sessionStorage.ID_USUARIO
+        }),
+    })
+
+
+    function bill() {
+        idpersonagem = 13;
+
+        fetch("/usuarios/verificarcompra", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+
+            idpersonagemServer: idpersonagem,
+            idusuarioServer:  sessionStorage.ID_USUARIO
+        }),
+    }).then(function (resposta) {
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+                personagemdesbloqueado = json.personagemdesbloqueado;
+            });
+
+        }
+    }); setTimeout(() => {
+        if(personagemdesbloqueado == 0){
+            return window.location.href = "./personagens/comprarpersonagem.html";
+        } else if(personagemdesbloqueado == 1){
+            return window.location.href = "./personagens/billcipher.html";
+        }
+    }, 120);
+    }
+    function dipper() {
+        idpersonagem = 1;
+        fetch("/usuarios/verificarcompra", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+
+            idpersonagemServer: idpersonagem,
+            idusuarioServer:  sessionStorage.ID_USUARIO
+        }),
+    }).then(function (resposta) {
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+                personagemdesbloqueado = json.personagemdesbloqueado;
+            });
+
+        }
+    }); setTimeout(() => {
+        if(personagemdesbloqueado == 0){
+            return window.location.href = "./personagens/comprarpersonagem.html";
+        } else if(personagemdesbloqueado == 1){
+            return window.location.href = "./personagens/dipper.html";
+        }
+    }, 120);
+    }
+    
+    function mabel() {
+        idpersonagem = 2;
+        fetch("/usuarios/verificarcompra", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+
+            idpersonagemServer: idpersonagem,
+            idusuarioServer:  sessionStorage.ID_USUARIO
+        }),
+    }).then(function (resposta) {
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+                personagemdesbloqueado = json.personagemdesbloqueado;
+            });
+
+        }
+    }); setTimeout(() => {
+        if(personagemdesbloqueado == 0){
+            return window.location.href = "./personagens/comprarpersonagem.html";
+        } else if(personagemdesbloqueado == 1){
+            return window.location.href = "./personagens/mabel.html";
+        }
+    }, 120);
+    }
+    function stan() {
+        idpersonagem = 12;
+        fetch("/usuarios/verificarcompra", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+
+            idpersonagemServer: idpersonagem,
+            idusuarioServer:  sessionStorage.ID_USUARIO
+        }),
+    }).then(function (resposta) {
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+                personagemdesbloqueado = json.personagemdesbloqueado;
+            });
+
+        }
+    }); setTimeout(() => {
+        if(personagemdesbloqueado == 0){
+            return window.location.href = "./personagens/comprarpersonagem.html";
+        } else if(personagemdesbloqueado == 1){
+            return window.location.href = "./personagens/stan.html";
+        }
+    }, 120);
+    }
+    function robbie() {
+        idpersonagem = 9;
+        fetch("/usuarios/verificarcompra", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+
+            idpersonagemServer: idpersonagem,
+            idusuarioServer:  sessionStorage.ID_USUARIO
+        }),
+    }).then(function (resposta) {
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+                personagemdesbloqueado = json.personagemdesbloqueado;
+            });
+
+        }
+    }); setTimeout(() => {
+        if(personagemdesbloqueado == 0){
+            return window.location.href = "./personagens/comprarpersonagem.html";
+        } else if(personagemdesbloqueado == 1){
+            return window.location.href = "./personagens/robbievalentino.html";
+        }
+    }, 120);
+    }
+    function minotauro() {
+        idpersonagem = 7;
+        window.location.href = "./personagens/minotauro.html"
+    }
+    function pacifica() {
+        idpersonagem = 6;
+        window.location.href = "./personagens/pacifica.html"
+    }
+    function wendy() {
+        idpersonagem = 5;
+        window.location.href = "./personagens/wendy.html"
+    }
+    function unicornio() {
+        idpersonagem = 11;
+        window.location.href = "./personagens/unicornio.html"
+    }
+    function soos() {
+        idpersonagem = 4;
+        window.location.href = "./personagens/soos.html"
+    }
+    function gideon() {
+        idpersonagem = 10;
+        window.location.href = "./personagens/gideon.html"
+    }
+    function gnomo() {
+        idpersonagem = 8;
+        window.location.href = "./personagens/gnomo.html"
+    }
+    function stanley() {
+        idpersonagem = 3;
+        window.location.href = "./personagens/stanley.html"
+    }
 
 </script>

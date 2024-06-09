@@ -20,6 +20,14 @@ router.post("/mostrarmoedaatual", function (req,res){
     usuarioController.mostrarmoedaatual(req,res);
 });
 
+router.post("/verificarcompra", function (req,res){
+    usuarioController.verificarcompra(req,res)
+});
+
+router.post("/criardados", function (req,res){
+    usuarioController.criardados(req,res)
+})
+
 // Mabel
 
 router.post("/acrescentarcurtidamabel", function (req,res){
