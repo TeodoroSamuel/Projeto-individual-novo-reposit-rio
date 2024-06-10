@@ -7,7 +7,8 @@ nome varchar(45),
 Email varchar(90),
 Senha varchar(40),
 moedas int,
-score int
+score int,
+aventurainiciada int
 );
 select * from usuario;
 
@@ -73,7 +74,7 @@ insert into usuario values
 insert into personagens values
 (default, 'Dipper Pines', 'Comum', 'Estinto Aguçado', 498, 0),
 (default, 'Mabel Pines', 'Comum', 'Otimismo', 490, 0),
-(default, 'Stanley Pines', 'Raro', 'Furto', 559, 200),
+(default, 'Stanley Pines', 'Raro', 'Furto', 559, 150),
 (default, 'Soos', 'Raro', 'Faz tudo', 480, 150),
 (default, 'Wendy Corduroy', 'Raro', 'Machado Poderoso', 600, 250),
 (default, 'Pacifica Northwest', 'Épico', 'Manipulação', 453, 300),
@@ -104,3 +105,5 @@ desc usuario;
 select * from usuario;
 
 SELECT * from personagens;
+
+update usuario set moedas = 6000 where idUsuario = 2;
