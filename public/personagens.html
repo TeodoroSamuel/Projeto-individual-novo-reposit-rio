@@ -140,7 +140,7 @@
 <script>
 
     let moeda = 0;
-    let personagemdesbloqueado = "não";
+    let personagemdesbloqueado = 0;
     let idpersonagem = 0;
 
     fetch("/usuarios/mostrarmoedaatual", {
@@ -338,35 +338,251 @@
     }
     function minotauro() {
         idpersonagem = 7;
-        window.location.href = "./personagens/minotauro.html"
+        fetch("/usuarios/verificarcompra", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+
+            idpersonagemServer: idpersonagem,
+            idusuarioServer:  sessionStorage.ID_USUARIO
+        }),
+    }).then(function (resposta) {
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+                personagemdesbloqueado = json.personagemdesbloqueado;
+            });
+
+        }
+    }); setTimeout(() => {
+        if(personagemdesbloqueado == 0){
+            return window.location.href = "./personagens/comprarpersonagem.html";
+        } else if(personagemdesbloqueado == 1){
+            return window.location.href = "./personagens/minotauro.html";
+        }
+    }, 120);
     }
     function pacifica() {
         idpersonagem = 6;
-        window.location.href = "./personagens/pacifica.html"
+        fetch("/usuarios/verificarcompra", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+
+            idpersonagemServer: idpersonagem,
+            idusuarioServer:  sessionStorage.ID_USUARIO
+        }),
+    }).then(function (resposta) {
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+                personagemdesbloqueado = json.personagemdesbloqueado;
+            });
+
+        }
+    }); setTimeout(() => {
+        if(personagemdesbloqueado == 0){
+            return window.location.href = "./personagens/comprarpersonagem.html";
+        } else if(personagemdesbloqueado == 1){
+            return window.location.href = "./personagens/pacifica.html";
+        }
+    }, 120);
     }
     function wendy() {
         idpersonagem = 5;
-        window.location.href = "./personagens/wendy.html"
+        fetch("/usuarios/verificarcompra", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+
+            idpersonagemServer: idpersonagem,
+            idusuarioServer:  sessionStorage.ID_USUARIO
+        }),
+    }).then(function (resposta) {
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+                personagemdesbloqueado = json.personagemdesbloqueado;
+            });
+
+        }
+    }); setTimeout(() => {
+        if(personagemdesbloqueado == 0){
+            return window.location.href = "./personagens/comprarpersonagem.html";
+        } else if(personagemdesbloqueado == 1){
+            return window.location.href = "./personagens/wendy.html";
+        }
+    }, 120);
     }
     function unicornio() {
         idpersonagem = 11;
-        window.location.href = "./personagens/unicornio.html"
+        fetch("/usuarios/verificarcompra", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+
+            idpersonagemServer: idpersonagem,
+            idusuarioServer:  sessionStorage.ID_USUARIO
+        }),
+    }).then(function (resposta) {
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+                personagemdesbloqueado = json.personagemdesbloqueado;
+            });
+
+        }
+    }); setTimeout(() => {
+        if(personagemdesbloqueado == 0){
+            return window.location.href = "./personagens/comprarpersonagem.html";
+        } else if(personagemdesbloqueado == 1){
+            return window.location.href = "./personagens/unicornio.html";
+        }
+    }, 120);
     }
     function soos() {
         idpersonagem = 4;
-        window.location.href = "./personagens/soos.html"
+        fetch("/usuarios/verificarcompra", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+
+            idpersonagemServer: idpersonagem,
+            idusuarioServer:  sessionStorage.ID_USUARIO
+        }),
+    }).then(function (resposta) {
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+                personagemdesbloqueado = json.personagemdesbloqueado;
+            });
+
+        }
+    }); setTimeout(() => {
+        if(personagemdesbloqueado == 0){
+            return window.location.href = "./personagens/comprarpersonagem.html";
+        } else if(personagemdesbloqueado == 1){
+            return window.location.href = "./personagens/soos.html";
+        }
+    }, 120);
     }
     function gideon() {
         idpersonagem = 10;
-        window.location.href = "./personagens/gideon.html"
+        fetch("/usuarios/verificarcompra", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+
+            idpersonagemServer: idpersonagem,
+            idusuarioServer:  sessionStorage.ID_USUARIO
+        }),
+    }).then(function (resposta) {
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+                personagemdesbloqueado = json.personagemdesbloqueado;
+            });
+
+        }
+    }); setTimeout(() => {
+        if(personagemdesbloqueado == 0){
+            return window.location.href = "./personagens/comprarpersonagem.html";
+        } else if(personagemdesbloqueado == 1){
+            return window.location.href = "./personagens/gideon.html";
+        }
+    }, 120);
     }
     function gnomo() {
         idpersonagem = 8;
-        window.location.href = "./personagens/gnomo.html"
+        fetch("/usuarios/verificarcompra", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+
+            idpersonagemServer: idpersonagem,
+            idusuarioServer:  sessionStorage.ID_USUARIO
+        }),
+    }).then(function (resposta) {
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+                personagemdesbloqueado = json.personagemdesbloqueado;
+            });
+
+        }
+    }); setTimeout(() => {
+        if(personagemdesbloqueado == 0){
+            return window.location.href = "./personagens/comprarpersonagem.html";
+        } else if(personagemdesbloqueado == 1){
+            return window.location.href = "./personagens/gnomo.html";
+        }
+    }, 120);
     }
     function stanley() {
         idpersonagem = 3;
-        window.location.href = "./personagens/stanley.html"
+        fetch("/usuarios/verificarcompra", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+
+            idpersonagemServer: idpersonagem,
+            idusuarioServer:  sessionStorage.ID_USUARIO
+        }),
+    }).then(function (resposta) {
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+                personagemdesbloqueado = json.personagemdesbloqueado;
+            });
+
+        }
+    }); setTimeout(() => {
+        if(personagemdesbloqueado == 0){
+            return window.location.href = "./personagens/comprarpersonagem.html";
+        } else if(personagemdesbloqueado == 1){
+            return window.location.href = "./personagens/stanley.html";
+        }
+    }, 120);
     }
 
 </script>

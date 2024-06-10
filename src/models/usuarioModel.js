@@ -11,13 +11,13 @@ function autenticar(email, senha) {
 }
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucaoSql
-function cadastrar(nome, email, senha, moedas, score) {
+function cadastrar(nome, email, senha, moedas, score, idUsuario, botaoinicialapertado) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nome, email, senha);
 
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucaoSql = `
-        INSERT INTO usuario (nome, email, senha, moedas, score) VALUES ('${nome}', '${email}', '${senha}', ${moedas}, ${score});
+        INSERT INTO usuario (nome, email, senha, moedas, score, aventurainiciada) VALUES ('${nome}', '${email}', '${senha}', ${moedas}, ${score}, ${botaoinicialapertado});
     `;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -46,11 +46,34 @@ function pegarultimoscore(idUsuario) {
 }
 
 function acrescentarmoedasescore(moedasacrescentadas, idUsuario, scoreacrescentado) {
-    var instrucaoSql = `
-        INSERT INTO tentativasJoguinho value 
-        (default, 1, ${idUsuario}, now(), ${moedasacrescentadas}, ${scoreacrescentado});
+    console.log(moedasacrescentadas)
+    pegarultimovalor(idUsuario).then((resposta) => {
+        console.log(resposta[0].moedas)
+
+        var instrucaoSql = `
+        UPDATE usuario SET moedas = '${moedasacrescentadas + resposta[0].moedas}'
+        where idUsuario = ${idUsuario};
+        `;
+        return database.executar(instrucaoSql);
+    });
+    console.log(scoreacrescentado)
+    pegarultimoscore(idUsuario).then((resposta) => {
+        console.log(resposta[0].score)
+
+        var instrucaoSql = `
+        UPDATE usuario SET score = '${scoreacrescentado + resposta[0].score}'
+        where idUsuario = ${idUsuario};
         `;
     return database.executar(instrucaoSql);
+    })
+}
+
+function iniciaraventura(idUsuario) {
+
+    var instrucaoSql = `SELECT moedas FROM usuario WHERE idUsuario = ${idUsuario};`
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql)
 }
 
 function mostrarmoedaatual(idUsuario) {
@@ -111,6 +134,17 @@ function verificarcompra(idusuario, idpersonagem) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql)
 }
+
+function atualizarmoedasdousuario(qtdmoedasnecessarias, idUsuario){
+    pegarultimovalor(idUsuario).then((resposta) => {
+    var instrucaoSql = `      
+     UPDATE usuario SET moedas = ${resposta[0].moedas - qtdmoedasnecessarias}
+        WHERE idUsuario = ${idUsuario};
+        `
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql)
+    })
+}
 // Mabel Pines
 
 function pegarultimacurtidamabel() {
@@ -146,26 +180,11 @@ function retirarcurtidamabel(curtida) {
 }
 
 function acrescentartentativamabelcoin(moedasacrescentadas, idUsuario, scoreacrescentado) {
-    console.log(moedasacrescentadas)
-    pegarultimovalor(idUsuario).then((resposta) => {
-        console.log(resposta[0].moedas)
-
-        var instrucaoSql = `
-        UPDATE usuario SET moedas = '${moedasacrescentadas + resposta[0].moedas}'
-        where idUsuario = ${idUsuario};
+    var instrucaoSql = `
+        INSERT INTO tentativasJoguinho value 
+        (default, 1, ${idUsuario}, now(), ${scoreacrescentado}, ${moedasacrescentadas});
         `;
         return database.executar(instrucaoSql);
-    });
-    console.log(scoreacrescentado)
-    pegarultimoscore(idUsuario).then((resposta) => {
-        console.log(resposta[0].score)
-
-        var instrucaoSql = `
-        UPDATE usuario SET score = '${scoreacrescentado + resposta[0].score}'
-        where idUsuario = ${idUsuario};
-        `;
-        return database.executar(instrucaoSql);
-    });
 }
 
 // Dipper Pines
@@ -232,8 +251,23 @@ function retirarcurtidabill(curtida) {
         where nome = 'Bill Cipher';
         `;
         return database.executar(instrucaoSql);
-        ;
+        
     });
+}
+
+function descobrirmoedasnecessariasbill(idpersonagem) {
+        var instrucaoSql = `
+        SELECT valordopersonagem FROM personagens WHERE idPersonagem = ${idpersonagem}
+        `;
+        return database.executar(instrucaoSql);  
+}
+
+function atualizarcomprabill(idpersonagem, idUsuario){
+    var instrucaoSql = `
+   UPDATE personagensdesbloqueados SET desbloqueado = 1
+   WHERE fkPersonagem = ${idpersonagem} AND fkUsuario = ${idUsuario}
+    `;
+    return database.executar(instrucaoSql); 
 }
 
 // Gideon
@@ -582,11 +616,13 @@ module.exports = {
     cadastrar,
 
     acrescentarmoedasescore,
+    iniciaraventura,
     pegarultimovalor,
     pegarultimoscore,
     mostrarmoedaatual,
     verificarcompra,
     criardados,
+    atualizarmoedasdousuario,
     // inspecionardados,
 
     pegarultimacurtidamabel,
@@ -601,6 +637,8 @@ module.exports = {
     pegarultimacurtidabill,
     retirarcurtidabill,
     acrescentarcurtidabill,
+    descobrirmoedasnecessariasbill,
+    atualizarcomprabill,
 
     pegarultimacurtidagideon,
     retirarcurtidagideon,

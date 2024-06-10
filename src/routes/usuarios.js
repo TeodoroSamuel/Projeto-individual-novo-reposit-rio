@@ -16,6 +16,10 @@ router.post("/acrescentarmoedasescore", function (req,res){
     usuarioController.acrescentarmoedasescore(req,res);
 });
 
+router.post("/iniciaraventura", function (req,res){
+    usuarioController.iniciaraventura(req,res);
+});
+
 router.post("/mostrarmoedaatual", function (req,res){
     usuarioController.mostrarmoedaatual(req,res);
 });
@@ -26,7 +30,11 @@ router.post("/verificarcompra", function (req,res){
 
 router.post("/criardados", function (req,res){
     usuarioController.criardados(req,res)
-})
+});
+
+router.post("/atualizarmoedasdousuario", function (req,res){
+    usuarioController.atualizarmoedasdousuario(req,res)
+});
 
 // Mabel
 
@@ -40,9 +48,7 @@ router.post("/retirarcurtidamabel", function (req,res){
 
 router.post("/acrescentartentativamabelcoin", function(req,res){
     usuarioController.acrescentartentativamabelcoin(req,res)
-}
-
-)
+});
 
 // Dipper
 
@@ -64,6 +70,13 @@ router.post("/retirarcurtidabill", function (req,res){
     usuarioController.retirarcurtidabill(req,res);
 });
 
+router.post("/descobrirmoedasnecessariasbill", function (req,res){
+    usuarioController.descobrirmoedasnecessariasbill(req,res);
+});
+
+router.post("/atualizarcomprabill", function (req,res){
+    usuarioController.atualizarcomprabill(req,res);
+});
 // Gideon 
 
 router.post("/acrescentarcurtidagideon", function (req,res){

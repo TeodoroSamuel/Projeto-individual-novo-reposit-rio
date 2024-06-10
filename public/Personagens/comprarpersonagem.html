@@ -40,26 +40,33 @@
                 <li class="texto-em-destaque-cabecalho">
                 <li class="botao-dentro-de-destaque">
 
-                        Desbloquear
+                    Desbloquear
 
                 </li>
 
             </div>
 
             <div class="terceira-parte-do-cabecalho">
-            
-            <div class="quarta-parte-do-cabecalho">
 
-                <li>
-                    <a href="../perfil.html"  class="perfil-area">
-                        <div class="nome" id="nome">Samuel Teodoro</div> 
-                        <img src="../Css/img/perfil-foto-teste.jpg" class="perfil">
-                    </a>
-                </li>
+                <div class="quarta-parte-do-cabecalho">
+
+                    <li>
+                        <div id="dollarsarea" class="dollarsarea">
+
+
+                        </div>
+                    </li>
+
+                    <li>
+                        <a href="../perfil.html" class="perfil-area">
+                            <div class="nome" id="nome">Samuel Teodoro</div>
+                            <img src="../Css/img/perfil-foto-teste.jpg" class="perfil">
+                        </a>
+                    </li>
+
+                </div>
 
             </div>
-
-        </div>
         </div>
 
         </div>
@@ -68,27 +75,120 @@
 
     <div class="area-principal">
 
-        <div class="area-foto">
-            <p>
-            Para conseguir Desbloquear esse Personagem,<br>
-            você precisa pagar 150 moedas 
-        </p>
-            <button onclick="comprarpersonagem()" class="botaodecompra">
-                Comprar
-            </button>
+        <div id="areafoto" class="areafoto">
+
         </div>
 
     </div>
-    
+
     <div class="borda-inferior">
 
-        </div>
+    </div>
 
 </body>
 
 </html>
 
 <script>
+    let moeda = 0;
+    let qtdmoedasnecessarias = 0;
+    let idpersonagem = 13;
 
 
+    fetch("/usuarios/mostrarmoedaatual", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+
+            idUsuario: sessionStorage.ID_USUARIO
+        }),
+    }).then(function (resposta) {
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+                moeda = json.moeda;
+            });
+
+        }
+    }); setTimeout(() => {
+        dollarsarea.innerHTML = `<img src="../Css/img/wired-lineal-290-coin.gif" class="dollars">${moeda}`
+    }, 120);
+
+
+    fetch("/usuarios/criardados", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            idUsuario: sessionStorage.ID_USUARIO
+        }),
+    })
+
+    fetch("/usuarios/descobrirmoedasnecessariasbill", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            idpersonagemServer: idpersonagem
+        }),
+    }).then(function (resposta) {
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+                qtdmoedasnecessarias = json.valordopersonagem;
+            });
+
+        }
+    }); setTimeout(() => {
+        areafoto.innerHTML = `<p>
+            Para conseguir Desbloquear esse Personagem,<br>
+            você precisa pagar <b>${qtdmoedasnecessarias}</b> moedas 
+        </p>
+            <button onclick="comprarpersonagem()" class="botaodecompra">
+                Comprar
+            </button>`
+    }, 120);
+
+
+    function comprarpersonagem() {
+        let idpersonagem = 13;
+        if (moeda < qtdmoedasnecessarias) {
+            areafoto.innerHTML = 'Uma pena, mas você ainda não possui o numero necessário para conseguir desbloquear esse personagem, volte mais tarde.'
+        } else {
+            fetch("/usuarios/atualizarcomprabill", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    idpersonagemServer: idpersonagem,
+                    idUsuarioServer: sessionStorage.ID_USUARIO
+                }),
+            });
+            
+            fetch("/usuarios/atualizarmoedasdousuario", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    qtdmoedasnecessariasServer: qtdmoedasnecessarias,
+                    idUsuarioServer: sessionStorage.ID_USUARIO
+                }),
+            });setTimeout(() => {           
+                 window.location.href = "../Personagens/billcipher.html"
+        }, 1000);
+       
+        }
+    }
 </script>

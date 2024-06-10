@@ -42,6 +42,7 @@ function cadastrar(req, res) {
     var moedas = req.body.moedasServer;
     var score = req.body.scoreServer;
     var idUsuario = req.body.idusuarioServer;
+    var botaoinicialapertado = req.body.botaoinicialapertadoServer;
 
     // Faça as validações dos valores
     if (nome == undefined) {
@@ -53,7 +54,7 @@ function cadastrar(req, res) {
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, senha, moedas, score, idUsuario)
+        usuarioModel.cadastrar(nome, email, senha, moedas, score, idUsuario, botaoinicialapertado)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -77,6 +78,12 @@ function acrescentarmoedasescore(req, res) {
     var idUsuario = req.body.idUsuario;
     var scoreacrescentado = req.body.scoreServer;
     usuarioModel.acrescentarmoedasescore(moedasacrescentadas, idUsuario, scoreacrescentado);
+}
+
+function iniciaraventura(req, res){
+    var botaoapertado = req.body.botaoapertadoServer;
+    var idUsuario = req.body.idUsuario
+    usuarioModel.iniciaraventura(botaoapertado, idUsuario);
 }
 
 function mostrarmoedaatual(req, res) {
@@ -147,6 +154,29 @@ function acrescentarcurtidabill(req, res) {
 function retirarcurtidabill(req, res) {
     var curtida = req.body.curtidasServer;
     usuarioModel.retirarcurtidabill(curtida);
+}
+
+function descobrirmoedasnecessariasbill(req, res) {
+    var idpersonagem = req.body.idpersonagemServer;
+    usuarioModel.descobrirmoedasnecessariasbill(idpersonagem).then((resposta) => {
+        console.log(resposta[0].valordopersonagem)
+        res.json({
+            valordopersonagem: resposta[0].valordopersonagem,
+        });
+    });
+}
+
+function atualizarcomprabill(req, res) {
+    var idpersonagem = req.body.idpersonagemServer;
+    var idUsuario = req.body.idUsuarioServer;
+    usuarioModel.atualizarcomprabill(idpersonagem, idUsuario)
+}
+
+
+function atualizarmoedasdousuario(req, res) {
+    var qtdmoedasnecessarias = req.body.qtdmoedasnecessariasServer;
+    var idUsuario = req.body.idUsuarioServer;
+    usuarioModel.atualizarmoedasdousuario(qtdmoedasnecessarias, idUsuario)
 }
 
 // Gideon
@@ -272,9 +302,11 @@ module.exports = {
     autenticar,
     cadastrar,
     acrescentarmoedasescore,
+    iniciaraventura,
     mostrarmoedaatual,
     verificarcompra,
     criardados,
+    atualizarmoedasdousuario,
 
     acrescentarcurtidamabel,
     retirarcurtidamabel,
@@ -285,6 +317,8 @@ module.exports = {
 
     retirarcurtidabill,
     acrescentarcurtidabill,
+    descobrirmoedasnecessariasbill,
+    atualizarcomprabill,
 
     retirarcurtidagideon,
     acrescentarcurtidagideon,
