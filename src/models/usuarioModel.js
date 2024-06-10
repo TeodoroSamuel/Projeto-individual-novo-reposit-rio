@@ -68,12 +68,19 @@ function acrescentarmoedasescore(moedasacrescentadas, idUsuario, scoreacrescenta
     })
 }
 
-function iniciaraventura(idUsuario) {
+function iniciaraventura(botaoapertado, idUsuario) {
+    inspecionardados(idUsuario).then((resposta) => {
 
-    var instrucaoSql = `SELECT moedas FROM usuario WHERE idUsuario = ${idUsuario};`
+        if(resposta[0].aventurainiciada == 1){
+           return console.log("Dados ja criados")
+        }else{
 
+    var instrucaoSql = `UPDATE usuario SET aventurainiciada = ${botaoapertado} WHERE idUsuario = ${idUsuario}`
+    criardados(idUsuario);
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql)
+}
+});
 }
 
 function mostrarmoedaatual(idUsuario) {
@@ -84,26 +91,19 @@ function mostrarmoedaatual(idUsuario) {
     return database.executar(instrucaoSql)
 }
 
-// function inspecionardados(idUsuario){
-//     var instrucaoSql = `
-//     SELECT desbloqueado FROM personagensdesbloqueados WHERE fkUsuario = ${idUsuario} AND fkpersonagem = 1;
-// `;
-//     console.log("Executando a instrução SQL: \n" + instrucaoSql);
+function inspecionardados(idUsuario){
+    var instrucaoSql = `
+    SELECT aventurainiciada FROM usuario WHERE idUsuario = ${idUsuario};
+`;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
 
-//     if(inspecao == undefined){
-//         inspecao = 0;
-//     };
-//     console.log(inspecao)
-//     var inspecao = database.executar(instrucaoSql);
-//     return inspecao;
-// }
+    console.log(inspecao)
+    var inspecao = database.executar(instrucaoSql);
+    return inspecao;
+}
 
 function criardados(idUsuario){
-    // inspecionardados(idUsuario).then((resposta) => {
 
-    //     if(resposta[0].desbloqueado == 1){
-    //        return console.log("Dados ja criados")
-    //     }else{
     var instrucaoSql = `
     INSERT INTO  personagensdesbloqueados VALUES 
     (default, ${idUsuario}, 1, now(), 1),
@@ -122,8 +122,7 @@ function criardados(idUsuario){
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql)
-// }
-    // })
+
 }
 
 function verificarcompra(idusuario, idpersonagem) {

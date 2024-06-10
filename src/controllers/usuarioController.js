@@ -107,11 +107,6 @@ function verificarcompra(req,res){
     });
 }
 
-function criardados(req,res){
-    var idUsuario = req.body.idUsuario
-    usuarioModel.criardados(idUsuario)
-}
-
 // Mabel
 
 function acrescentarcurtidamabel(req, res) {
@@ -305,7 +300,6 @@ module.exports = {
     iniciaraventura,
     mostrarmoedaatual,
     verificarcompra,
-    criardados,
     atualizarmoedasdousuario,
 
     acrescentarcurtidamabel,

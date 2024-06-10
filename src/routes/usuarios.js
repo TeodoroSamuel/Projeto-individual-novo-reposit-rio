@@ -28,10 +28,6 @@ router.post("/verificarcompra", function (req,res){
     usuarioController.verificarcompra(req,res)
 });
 
-router.post("/criardados", function (req,res){
-    usuarioController.criardados(req,res)
-});
-
 router.post("/atualizarmoedasdousuario", function (req,res){
     usuarioController.atualizarmoedasdousuario(req,res)
 });

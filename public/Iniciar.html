@@ -116,18 +116,10 @@
             idUsuario: sessionStorage.ID_USUARIO,
             botaoapertadoServer: botaoapertado
         }),
-    }).then(function (resposta) {
-        if (resposta.ok) {
-            console.log(resposta);
+    }), setTimeout(() => {
+        window.location.href = "./personagens.html"
+    }, 120);
 
-            resposta.json().then(json => {
-                console.log(json);
-                console.log(JSON.stringify(json));
-                moeda = json.moeda;
-            });
-
-        }
-    });
     }
    
 </script>

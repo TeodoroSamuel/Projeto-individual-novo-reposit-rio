@@ -167,18 +167,6 @@
         dollarsarea.innerHTML = `<img src="./Css/img/wired-lineal-290-coin.gif" class="dollars">${moeda}`
     }, 120);
 
-    
-    fetch("/usuarios/criardados", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            idUsuario: sessionStorage.ID_USUARIO
-        }),
-    })
-
-
     function bill() {
         idpersonagem = 13;
 
