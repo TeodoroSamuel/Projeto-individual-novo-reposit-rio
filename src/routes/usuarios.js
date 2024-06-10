@@ -24,12 +24,24 @@ router.post("/mostrarmoedaatual", function (req,res){
     usuarioController.mostrarmoedaatual(req,res);
 });
 
+router.post("/mostraremailatual", function (req,res){
+    usuarioController.mostraremailatual(req,res);
+});
+
 router.post("/verificarcompra", function (req,res){
     usuarioController.verificarcompra(req,res)
 });
 
 router.post("/atualizarmoedasdousuario", function (req,res){
     usuarioController.atualizarmoedasdousuario(req,res)
+});
+
+router.post("/atualizarcompra", function (req,res){
+    usuarioController.atualizarcompra(req,res);
+});
+
+router.post("/descobrirmoedasnecessarias", function (req,res){
+    usuarioController.descobrirmoedasnecessarias(req,res);
 });
 
 // Mabel
@@ -66,13 +78,6 @@ router.post("/retirarcurtidabill", function (req,res){
     usuarioController.retirarcurtidabill(req,res);
 });
 
-router.post("/descobrirmoedasnecessariasbill", function (req,res){
-    usuarioController.descobrirmoedasnecessariasbill(req,res);
-});
-
-router.post("/atualizarcomprabill", function (req,res){
-    usuarioController.atualizarcomprabill(req,res);
-});
 // Gideon 
 
 router.post("/acrescentarcurtidagideon", function (req,res){

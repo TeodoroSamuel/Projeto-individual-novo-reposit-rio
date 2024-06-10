@@ -97,6 +97,17 @@ function mostrarmoedaatual(req, res) {
     });
 }
 
+function mostraremailatual(req, res) {
+    var idUsuario = req.body.idUsuario;
+    console.log(idUsuario)
+    usuarioModel.mostraremailatual(idUsuario).then((resposta) => {
+        console.log(resposta[0].Email)
+        res.json({
+            emails: resposta[0].Email,
+        });
+    });
+}
+
 function verificarcompra(req,res){
     var idusuario = req.body.idusuarioServer;
     var idpersonagem = req.body.idpersonagemServer;
@@ -105,6 +116,28 @@ function verificarcompra(req,res){
             personagemdesbloqueado: resposta[0].desbloqueado        
         });
     });
+}
+
+function atualizarcompra(req, res) {
+    var idpersonagem = req.body.idpersonagemServer;
+    var idUsuario = req.body.idUsuarioServer;
+    usuarioModel.atualizarcompra(idpersonagem, idUsuario)
+}
+
+function descobrirmoedasnecessarias(req, res) {
+    var idpersonagem = req.body.idpersonagemServer;
+    usuarioModel.descobrirmoedasnecessarias(idpersonagem).then((resposta) => {
+        console.log(resposta[0].valordopersonagem)
+        res.json({
+            valordopersonagem: resposta[0].valordopersonagem,
+        });
+    });
+}
+
+function atualizarmoedasdousuario(req, res) {
+    var qtdmoedasnecessarias = req.body.qtdmoedasnecessariasServer;
+    var idUsuario = req.body.idUsuarioServer;
+    usuarioModel.atualizarmoedasdousuario(qtdmoedasnecessarias, idUsuario)
 }
 
 // Mabel
@@ -149,29 +182,6 @@ function acrescentarcurtidabill(req, res) {
 function retirarcurtidabill(req, res) {
     var curtida = req.body.curtidasServer;
     usuarioModel.retirarcurtidabill(curtida);
-}
-
-function descobrirmoedasnecessariasbill(req, res) {
-    var idpersonagem = req.body.idpersonagemServer;
-    usuarioModel.descobrirmoedasnecessariasbill(idpersonagem).then((resposta) => {
-        console.log(resposta[0].valordopersonagem)
-        res.json({
-            valordopersonagem: resposta[0].valordopersonagem,
-        });
-    });
-}
-
-function atualizarcomprabill(req, res) {
-    var idpersonagem = req.body.idpersonagemServer;
-    var idUsuario = req.body.idUsuarioServer;
-    usuarioModel.atualizarcomprabill(idpersonagem, idUsuario)
-}
-
-
-function atualizarmoedasdousuario(req, res) {
-    var qtdmoedasnecessarias = req.body.qtdmoedasnecessariasServer;
-    var idUsuario = req.body.idUsuarioServer;
-    usuarioModel.atualizarmoedasdousuario(qtdmoedasnecessarias, idUsuario)
 }
 
 // Gideon
@@ -299,8 +309,11 @@ module.exports = {
     acrescentarmoedasescore,
     iniciaraventura,
     mostrarmoedaatual,
+    mostraremailatual,
     verificarcompra,
     atualizarmoedasdousuario,
+    atualizarcompra,
+    descobrirmoedasnecessarias,
 
     acrescentarcurtidamabel,
     retirarcurtidamabel,
@@ -311,8 +324,6 @@ module.exports = {
 
     retirarcurtidabill,
     acrescentarcurtidabill,
-    descobrirmoedasnecessariasbill,
-    atualizarcomprabill,
 
     retirarcurtidagideon,
     acrescentarcurtidagideon,

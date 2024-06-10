@@ -92,7 +92,7 @@
 <script>
     let moeda = 0;
     let qtdmoedasnecessarias = 0;
-    let idpersonagem = 13;
+    let idpersonagem = 5;
 
 
     fetch("/usuarios/mostrarmoedaatual", {
@@ -118,17 +118,6 @@
     }); setTimeout(() => {
         dollarsarea.innerHTML = `<img src="../Css/img/wired-lineal-290-coin.gif" class="dollars">${moeda}`
     }, 120);
-
-
-    fetch("/usuarios/criardados", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            idUsuario: sessionStorage.ID_USUARIO
-        }),
-    })
 
     fetch("/usuarios/descobrirmoedasnecessarias", {
         method: "POST",
@@ -161,11 +150,11 @@
 
 
     function comprarpersonagem() {
-        let idpersonagem = 13;
+        let idpersonagem = 5;
         if (moeda < qtdmoedasnecessarias) {
             areafoto.innerHTML = 'Uma pena, mas você ainda não possui o numero necessário para conseguir desbloquear esse personagem, volte mais tarde.'
         } else {
-            fetch("/usuarios/atualizarcomprabill", {
+            fetch("/usuarios/atualizarcompra", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -186,7 +175,7 @@
                     idUsuarioServer: sessionStorage.ID_USUARIO
                 }),
             });setTimeout(() => {           
-                 window.location.href = "../Personagens/billcipher.html"
+                 window.location.href = "../Personagens/wendy.html"
         }, 1000);
        
         }

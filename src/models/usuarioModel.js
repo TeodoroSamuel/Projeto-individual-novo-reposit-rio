@@ -91,6 +91,14 @@ function mostrarmoedaatual(idUsuario) {
     return database.executar(instrucaoSql)
 }
 
+function mostraremailatual(idUsuario) {
+
+    var instrucaoSql = `SELECT Email FROM usuario WHERE idUsuario = ${idUsuario};`
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql)
+}
+
 function inspecionardados(idUsuario){
     var instrucaoSql = `
     SELECT aventurainiciada FROM usuario WHERE idUsuario = ${idUsuario};
@@ -144,6 +152,22 @@ function atualizarmoedasdousuario(qtdmoedasnecessarias, idUsuario){
     return database.executar(instrucaoSql)
     })
 }
+
+function atualizarcompra(idpersonagem, idUsuario){
+    var instrucaoSql = `
+   UPDATE personagensdesbloqueados SET desbloqueado = 1
+   WHERE fkPersonagem = ${idpersonagem} AND fkUsuario = ${idUsuario}
+    `;
+    return database.executar(instrucaoSql); 
+}
+
+function descobrirmoedasnecessarias(idpersonagem) {
+    var instrucaoSql = `
+    SELECT valordopersonagem FROM personagens WHERE idPersonagem = ${idpersonagem}
+    `;
+    return database.executar(instrucaoSql);  
+}
+
 // Mabel Pines
 
 function pegarultimacurtidamabel() {
@@ -252,21 +276,6 @@ function retirarcurtidabill(curtida) {
         return database.executar(instrucaoSql);
         
     });
-}
-
-function descobrirmoedasnecessariasbill(idpersonagem) {
-        var instrucaoSql = `
-        SELECT valordopersonagem FROM personagens WHERE idPersonagem = ${idpersonagem}
-        `;
-        return database.executar(instrucaoSql);  
-}
-
-function atualizarcomprabill(idpersonagem, idUsuario){
-    var instrucaoSql = `
-   UPDATE personagensdesbloqueados SET desbloqueado = 1
-   WHERE fkPersonagem = ${idpersonagem} AND fkUsuario = ${idUsuario}
-    `;
-    return database.executar(instrucaoSql); 
 }
 
 // Gideon
@@ -619,10 +628,13 @@ module.exports = {
     pegarultimovalor,
     pegarultimoscore,
     mostrarmoedaatual,
+    mostraremailatual,
     verificarcompra,
     criardados,
     atualizarmoedasdousuario,
-    // inspecionardados,
+    atualizarcompra,
+    inspecionardados,
+    descobrirmoedasnecessarias,
 
     pegarultimacurtidamabel,
     acrescentarcurtidamabel,
@@ -636,8 +648,6 @@ module.exports = {
     pegarultimacurtidabill,
     retirarcurtidabill,
     acrescentarcurtidabill,
-    descobrirmoedasnecessariasbill,
-    atualizarcomprabill,
 
     pegarultimacurtidagideon,
     retirarcurtidagideon,

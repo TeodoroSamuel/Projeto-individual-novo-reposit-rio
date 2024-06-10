@@ -22,14 +22,6 @@
                 <div class="texto-fora-de-destaque-cabecalho">
 
                     <li>
-                        <a href="./index.html" class="botao-fora-de-destaque">
-
-                            Home
-
-                        </a>
-                    </li>
-
-                    <li>
                         <a href="personagens.html" class="botao-fora-de-destaque">
 
                             Personagens
@@ -60,16 +52,8 @@
 
                     <li>
 
-                        <a href="cadastro.html" class="botao-fora-de-destaque">
-                            Cadastro
-                        </a>
-
-                    </li>
-
-                    <li>
-
-                        <a href="Login.html" class="botao-fora-de-destaque">
-                            Login
+                        <a href="index.html" class="botao-fora-de-destaque">
+                            Home
                         </a>
 
                     </li>
@@ -87,12 +71,9 @@
                 <div class="perfil">
 
                     <div class="primeira-parte-da-area-de-perfil">
-                        <img src="./Css/img/perfil-foto-teste.jpg" class="foto-perfil">
-                        <div class="nome">
-                            Samuel Teodoro <img src="./Css/img/verificado-removebg-preview.png" class="verificado">
-                        </div>
-                        <div class="data-de-nascimento">
-                            16 / 03 / 2006 
+                        <img src="./Css/img/dançando.gif" class="foto-perfil">
+                        <div id="nome" class="nome">
+                    
                         </div>
 
                     </div>
@@ -102,11 +83,31 @@
                         <div class="representando-o-que-e-a-informaca-abaixo">
                             E-mail:
                         </div>
-                        <div class="email">
-                            samuelt.souza@sptech.school
+                        <div id="email_div" class="email">
+                            
                         </div>
-                    </div>
 
+                        <div class="representando-o-que-e-a-informaca-abaixo">
+                            Moedas:
+                        </div>
+                        <div id="moedas" class="moedas">
+                            
+                        </div>
+                        <marquee scrollamount=30 direction="right">
+                            <img src="./css/img/-stan-smashdown-dribbble-unscreen.gif" class="gif">
+                        </marquee>
+                    </div>
+                    <div class="ultima-parte-da-area-de-perfil">
+                        <div class="developed">
+                        Developed
+                        <br>
+                        By
+                        <br>
+                        SAMUEL TEODORO SOUZA 
+                        <br>
+                        1ADS-A
+                    </div>
+                    </div>
                 </div>
 
             </div>
@@ -129,3 +130,58 @@
 </body>
 
 </html>
+
+<script>
+
+    nome.innerHTML = `${sessionStorage.NOME_USUARIO} <img src="./Css/img/verificado-removebg-preview.png" class="verificado">`
+
+    fetch("/usuarios/mostrarmoedaatual", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+
+            idUsuario: sessionStorage.ID_USUARIO
+        }),
+    }).then(function (resposta) {
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+                moeda = json.moeda;
+            });
+
+        }
+    }); setTimeout(() => {
+        moedas.innerHTML = `<img src="./Css/img/wired-lineal-290-coin.gif" class="dollars">${moeda}`
+    }, 120);
+
+    fetch("/usuarios/mostraremailatual", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+
+            idUsuario: sessionStorage.ID_USUARIO
+        }),
+    }).then(function (resposta) {
+        if (resposta.ok) {
+            console.log(resposta);
+
+            resposta.json().then(json => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+                email = json.emails;
+            });
+
+        }
+    }); setTimeout(() => {
+        email_div.innerHTML = `
+        ${email}`
+    }, 120);
+
+</script>

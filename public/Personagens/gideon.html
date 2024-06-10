@@ -55,7 +55,7 @@
                 
                 <li>
                     <a href="../perfil.html"  class="perfil-area">
-                        <div class="nome" id="nome">Samuel Teodoro</div> 
+                        <div class="nome" id="nome"></div> 
                         <img src="../Css/img/perfil-foto-teste.jpg" class="perfil">
                     </a>
                 </li>
@@ -122,6 +122,8 @@
 
 <script>
     let curtidasVar = 0;
+
+    nome.innerHTML = sessionStorage.NOME_USUARIO
 
     function curtida() {
         curtidasVar += 1;
