@@ -20,10 +20,11 @@ body {
     font-size: 25px;
     font-family: Georgia, serif;
     color: black;
+    border-image: fill 0 linear-gradient(to top,rgba(194, 156, 84, 0.781),rgba(194, 156, 84, 0));
 }
 
-.home:hover{
-    border-image: fill 0 linear-gradient(to top,rgb(194, 156, 84),rgba(194, 156, 84, 0));
+.Home:hover{
+    transition: 0.4s;
 }
 
 .disfarce-da-estrutura {
